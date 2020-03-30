@@ -1,7 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Global site tag (gtag.js) - Google Analytics -->
+<script>
+    function pluralize(str, num) {
+    	if (num == 1) return str;
+    	return str + "s";
+    }
+    function msToDHM(ms) {
+    	var days = Math.floor(ms / (24 * 60 * 60 * 1000));
+    	var msRemaining = ms - days * 24 * 60 * 60 * 1000;
+    	var hours = Math.floor(msRemaining / (60 * 60 * 1000));
+    	msRemaining = msRemaining - hours * 60 * 60 * 1000;
+    	var minutes = Math.floor(msRemaining / (60 * 1000));
+
+    	var dayStr = days.toString();
+    	var hourStr = hours.toString();
+    	var minStr = minutes.toString();
+
+    	if ((days == 0) && (hours == 0)) {
+    		return minStr + " " + pluralize("minute", minutes);
+    	}
+
+    	if (days == 0) {
+			return hourStr + " " + pluralize("hour", hours) + " and "
+				+ minStr + " " + pluralize("minute", minutes);
+    	}
+
+        return dayStr + " " + pluralize("day", days) + ", "
+            + hourStr + " " + pluralize("hour", hours) + " and "
+            + minStr + " " + pluralize("minute", minutes);
+    }
+	function setPreface() {
+		timeStrs = [
+			{time:"2020-04-01T14:00:00+01:00", person:"<a href='https://www.imperial.ac.uk/people/k.buzzard'>Kevin Buzzard</a>"},
+			{time:"2020-04-15T14:00:00+01:00", person:"<a href='https://www-i2.informatik.rwth-aachen.de/~katoen/'>Joost-Peter Katoen</a>"},
+			{time:"2020-04-29T14:00:00+01:00", person:"<a href='https://www.irif.fr/~petrisan/'>Daniela Petrisan</a>"},
+			{time:"2020-05-13T14:00:00+01:00", person:"<a href='https://www.mimuw.edu.pl/~klin/'>Bartek Klin</a>"},
+			{time:"2020-05-27T14:00:00+01:00", person:"<a href='http://www.cs.cornell.edu/~kozen/'>Dexter Kozen</a>"}
+		];
+		var i=0;		
+		let now = new Date();
+
+		for (var i=0; i<timeStrs.length; i++) {
+
+			var obj = timeStrs[i];
+			var t = new Date(obj.time);
+			var wait = t - now;
+			var html = "";
+
+			if (wait > 15 * 60 * 1000) {
+				// The talk is more than 15 minutes in the future
+				var html = "The next talk will by given by " + obj.person + " and starts in " + msToDHM(wait) + ".";
+			}
+
+			else if ((wait > 60000) && (wait <= 15 * 60 * 1000)) {
+				// The talk is less than 15 minutes in the future
+				var html = "The next talk will by given by " + obj.person
+				    + " and starts in " + msToDHM(wait) + "."
+					+ "<br>Join in with the pre-seminar coffee break here:"
+					+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
+			}
+
+			else if (wait > 0) {
+				// The talk is less than 15 minutes in the future
+				var html = obj.person + "'s talk is about to start, join in here:"
+					+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
+			}
+
+			else if ((wait < 0) && (wait > -45 * 60 * 1000)) {
+				var html = obj.person + "'s talk is underway, join in here:"
+					+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
+			}
+
+			else if ((wait < 0) && (wait > -60 * 60 * 1000)) {
+				var html = obj.person + "'s talk has finished, but you can join in the post-seminar coffee break here:"
+					+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
+			}
+
+			if (html != "") {
+				document.getElementById("preface").innerHTML = html;
+				return;
+			}
+
+		}
+	}
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162050937-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -17,9 +100,12 @@
    font-family: Verdana, Geneva, sans-serif;
  }
 
-p, ul {
+p, ul, #preface {
    font-size: 20px;
+}
 
+#preface {
+    font-style: oblique;
 }
 
 body {
@@ -41,7 +127,7 @@ body {
    border-width: 1px;
    border-color: black;
    margin-top: 0px;
-   margin-bottom: 0px;
+   margin-bottom: 20px;
  }
 
  #c {
@@ -118,6 +204,12 @@ h2 {
      </table>
  </center>
 
+ <center id="preface" onload="startPreface()">The next talk is ...</center>
+<script>
+    setPreface();
+	setInterval(setPreface, 1000);
+</script>
+
      <p>The <i>Online Worldwide Seminar on Logic and Semantics</i> is a new series of fortnightly research talks, highlighting the most exciting recent work in the international computer science logic community. The scope of the seminar series is roughly that of the major computer science logic conferences, such as LICS, ICALP and FSCD.</p>
 
      <p>In this time of restricted international travel, a key aim of this series is to provide a forum for informal discussion and social interaction that is so important for the progress of science. To facilitate this, the seminar incorporates in virtual form a number of features more normally associated with physical meetings:
@@ -136,7 +228,7 @@ h2 {
 
      <h2>Information for participants</h2>
 
-     <p><i>Joining the seminar.</i>To join any OWLS seminar, visit the following link, up to 15 minutes before the posted start time:</p>
+     <p><i>Joining the seminar.</i> To join any OWLS seminar, visit the following link, up to 15 minutes before the posted start time:</p>
      <ul><li><a href="https://zoom.us/j/177472153">https://zoom.us/j/177472153</a></li></ul>
      <p>You will be given the option to join through your web browser, or to launch the <i>Zoom</i> client if it is installed on your device <a href="#technology">(see below)</a>. For the best experience, we recommend using the client.</p>
 
