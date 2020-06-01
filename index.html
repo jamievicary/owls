@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<script src="jquery-3.5.1.min.js"></script>
 <script>
     function pluralize(str, num) {
     	if (num == 1) return str;
@@ -31,57 +33,43 @@
             + minStr + " " + pluralize("minute", minutes);
     }
 	function setPreface() {
-		timeStrs = [
-			{time:"2020-04-01T14:00:00+01:00", person:"<a href='https://www.imperial.ac.uk/people/k.buzzard'>Kevin Buzzard</a>"},
-			{time:"2020-04-15T14:00:00+01:00", person:"<a href='https://www-i2.informatik.rwth-aachen.de/~katoen/'>Joost-Pieter Katoen</a>"},
-			{time:"2020-04-29T14:00:00+01:00", person:"<a href='https://www.irif.fr/~petrisan/'>Daniela Petrisan</a>"},
-			{time:"2020-05-13T14:00:00+01:00", person:"<a href='https://www.mimuw.edu.pl/~klin/'>Bartek Klin</a>"},
-			{time:"2020-05-27T14:00:00+01:00", person:"<a href='http://www.cs.cornell.edu/~kozen/'>Dexter Kozen</a>"}
-		];
-		var i=0;		
-		let now = new Date();
 
-		for (var i=0; i<timeStrs.length; i++) {
+		var t = new Date("2020-04-01T14:00:00+01:00");
+		var week = 7 * 24 * 60 * 60 * 1000;
+		var late = ((new Date()) - t) % week;
+		var wait = week - late;
+		var html = "";
 
-			var obj = timeStrs[i];
-			var t = new Date(obj.time);
-			var wait = t - now;
-			var html = "";
+		// Talk started less than 45 minutes ago
+		if (late < 45 * 60 * 1000) {
+			html = "The seminar is underway, join in here:"
+				+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
+		}
 
-			if (wait > 15 * 60 * 1000) {
-				// The talk is more than 15 minutes in the future
-				var html = "The next talk will by given by " + obj.person + " and starts in " + msToDHM(wait) + ".";
-			}
+		// Talk started between 45 and 60 minutes ago
+		else if (late < 60 * 60 * 1000) {
+			html = "The talk has finished, but you can join in the post-seminar coffee break here:"
+				+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
+		}
 
-			else if ((wait > 60000) && (wait <= 15 * 60 * 1000)) {
-				// The talk is less than 15 minutes in the future
-				var html = "The next talk will by given by " + obj.person
-				    + " and starts in " + msToDHM(wait) + "."
-					+ "<br>Join in with the pre-seminar coffee break here:"
-					+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
-			}
+		// Less than 15 minutes until the next talk
+		else if (wait <= 15 * 60 * 1000) {
+			// The talk is less than 15 minutes in the future
+			html = "The next talk starts in " + msToDHM(wait) + "."
+				+ "<br>Join in with the pre-seminar coffee break here:"
+				+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
+		}
 
-			else if (wait > 0) {
-				// The talk is less than 15 minutes in the future
-				var html = obj.person + "'s talk is about to start, join in here:"
-					+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
-			}
+		// No talk is about to start or end
+		else if (wait > 15 * 60 * 1000) {
+			// The talk is more than 15 minutes in the future
+			html = "The next talk starts in " + msToDHM(wait) + ".";
+		}
 
-			else if ((wait < 0) && (wait > -45 * 60 * 1000)) {
-				var html = obj.person + "'s talk is underway, join in here:"
-					+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
-			}
 
-			else if ((wait < 0) && (wait > -60 * 60 * 1000)) {
-				var html = obj.person + "'s talk has finished, but you can join in the post-seminar coffee break here:"
-					+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
-			}
-
-			if (html != "") {
-				document.getElementById("preface").innerHTML = html;
-				return;
-			}
-
+		if (html != "") {
+			document.getElementById("preface").innerHTML = html;
+			return;
 		}
 	}
 
@@ -91,13 +79,24 @@
 		style.display = (style.display == "none") ? "block" : "none";
 	}
 	function enableToggles() {
-		toggles = document.querySelectorAll("span.abstoggle");
+		toggles = $("span.abstoggle");
 		for (var i=0; i<toggles.length; i++) {
 			var toggle = toggles[i];
-			var abstract = toggle.nextElementSibling;
-			abstract.style.display = "none";
-			abstract.onclick = toggleAbstract;
-			abstract.addEventListener("click", function(){alert("aarrgg")});
+			var abstract = $(toggle).nextAll('span').first()[0];
+			if (!abstract) continue;
+			$(abstract).css('display', 'none');
+			toggle.abstract = abstract;
+			$(toggle).click(function(e) {
+				var abs = $(e.currentTarget.abstract);
+				if (abs.css('display') == 'none') {
+					//abs.css('display', 'block');
+					abs.fadeIn();
+				} else {
+					abs.fadeOut();
+					//abs.css('display', 'none');
+				}
+			});
+			//abstract.onclick = toggleAbstract;
 			/*
 			abstract.addEventListener("click",
 				function () {
@@ -241,16 +240,16 @@ span.abstoggle {
      </table>
  </center>
 
- <!--<center id="preface" onload="startPreface()">The next talk is ...</center>-->
+ <center id="preface" onload="startPreface()">The next talk is ...</center>
 <script>
     setPreface();
 	setInterval(setPreface, 1000);
 </script>
+
 <!--
-<center><a href="#intro">Introduction</a> &bull; <a href="#partinfo">Information for participants</a> &bull; <a href="#upcoming">Upcoming seminars</a><br><a href="#technology">Technology</a> &bull; <a href="#mailing">Mailing list</a> &bull; <a href="#sc">Steering committee</a></center>
--->
 <center><i>Seminar Zoom Link: <a href="https://zoom.us/j/177472153">https://zoom.us/j/177472153</a></i></center>
-	    
+	-->
+
      <h2 id="intro">Introduction</h2>
 
      <p>The <i>Online Worldwide Seminar on Logic and Semantics</i> is a new series of research talks, highlighting the most exciting recent work in the international computer science logic community. The scope of the seminar series is roughly that of the major computer science logic conferences such as LICS, ICALP and FSCD. It takes place every Wednesday at 2pm UTC+1, with a focus every other week on the work of young researchers.</p>
@@ -262,7 +261,6 @@ span.abstoggle {
      	<li>Robust technology platform supporting hundreds of interactive participants.</li>
      	<li>Live-stream of the speaker's slides visible alongside the speaker's face, allowing nuanced communication at a human level.</li>
      	<li>Chairperson to introduce the speaker, facilitate questions from the audience, and keep proceedings running on time.</li>
-     	<li>Aggregate nonverbal feedback from audience members, such as "go faster" or "slow down", reported in real-time to the speaker.</li>
      	<li>Audience members whose question is selected by the chairperson can deliver it in full audio and video, giving a natural interaction with the speaker.</li>
      	<li>No need to register, just show up.</li>
      </ul>
@@ -284,7 +282,7 @@ span.abstoggle {
 <li>3 June 2020 (OWLS-YR). <a href="https://warwick.ac.uk/fac/sci/dcs/people/dmitry_chistikov/">Dmitry Chistkov</a>, University of Warwick, "Make commute: How hard can it be?".  <i>Chair: TBA</i></li>
 <li>10 June 2020 (OWLS). <a href="https://sites.google.com/site/valeriavignudelli/">Valeria Vignudelli</a>, ENS Lyon, "TBA". <i>Chair: Pawel Sobocinski</i></li>
 <li>17 June 2020 (OWLS-YR). <a href="http://www.lsv.fr/~fortin/">Marie Fortin</a>, University of Liverpool, "TBA" <i>Chair: TBA</i></li>
-<li>24 June 2020 (OWLS). <a href="http://www.anupamdas.com/wp/">Anupam Das</a>, University of Birmingham, "TBA". <i>Chair: TBA</i></li>
+<li>24 June 2020 (OWLS). <a href="http://www.anupamdas.com/wp/">Anupam Das</a>, University of Birmingham, "TBA". <i>Chair: Jamie Vicary</i></li>
 <li>1 July 2020 (OWLS-YR). <a href="https://perso.ens-lyon.fr/amina.doumane/">Amina Doumane</a>, CNRS, ENS de Lyon, "TBA". <i>Chair: TBA</i></li>
 <li>15 July 2020 (OWLS-YR). <a href="https://justinh.su/">Justin Hsu</a>, University of Wisconsin–Madison, "A Separation Logic for Probabilistic Independence". <i>Chair: TBA</i></li>
 </ul>
@@ -296,8 +294,9 @@ span.abstoggle {
 <li>13 May 2020 (OWLS). <a href="https://www.mimuw.edu.pl/~klin/">Bartek Klin</a>, Warsaw University, "Monadic monadic second order logic". <i>Chair: Jamie Vicary</i></li>
 <li>29 April 2020 (OWLS). <a href="https://www.irif.fr/~petrisan/">Daniela Petrisan</a>, University of Paris, "Combining probabilistic and non-deterministic choice via weak distributive laws" <a href="https://www.youtube.com/watch?v=nZLXeVNljy0&t=5s">(video)</a>. <i>Chair: Pawel Sobocinski</i></li>
 <li>15 April 2020 (OWLS). <a href="https://www-i2.informatik.rwth-aachen.de/~katoen/">Joost-Pieter Katoen</a>, RWTH Aachen University, "Termination of probabilistic programs" <a href="https://www.youtube.com/watch?v=25uuBNISTY8">(video)</a>. <i>Chair: Alexandra Silva</i></li>
-<li>1 April 2020 (OWLS). <a href="https://www.imperial.ac.uk/people/k.buzzard">Kevin Buzzard</a>, Imperial College London, "Is HoTT the way to do mathematics?" <a href="https://www.youtube.com/watch?v=q5-pykbfViA">(video)</a>. <i>Chair: Jamie Vicary</i></li>
+<li>1 April 2020 (OWLS). <a href="https://www.imperial.ac.uk/people/k.buzzard">Kevin Buzzard</a>, Imperial College London, "Is HoTT the way to do mathematics?". <i>Chair: Jamie Vicary</i> <a href="https://www.youtube.com/watch?v=q5-pykbfViA">(video)</a> <span class="abstoggle">(abstract)</span><span class="abstract"><br>THE ABSTRACT</span></li>
 </ul>
+
 
      <h2 id="partinfo">Information for participants</h2>
 
@@ -350,6 +349,6 @@ span.abstoggle {
 
 
         <!-- Some javascript to enable toggling abstracts -->
-        <script>
-        </script>
+        <script
+>        </script>
       </body>
