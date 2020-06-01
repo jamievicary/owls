@@ -79,21 +79,31 @@
 		style.display = (style.display == "none") ? "block" : "none";
 	}
 	function enableToggles() {
-		toggles = $("span.abstoggle");
-		for (var i=0; i<toggles.length; i++) {
-			var toggle = toggles[i];
-			var abstract = $(toggle).nextAll('span').first()[0];
+		abstracts = $("span.abstract");
+		for (var i=0; i<abstracts.length; i++) {
+			var abstract = abstracts[i];
 			if (!abstract) continue;
+
+            // Add toggle before abstract
+            var toggle = $('<span class="abstoggle">(abstract)</span>');
+            toggle.insertBefore($(abstract));
+
+            // Add <br> at start of abstract
+            var html = $(abstract).html();
+            if (html.trim().substring(0,3) != '<p>') {
+            	$(abstract).html('<p>' + html + '</p>');
+            }
+
 			$(abstract).css('display', 'none');
-			toggle.abstract = abstract;
+			toggle[0].abstract = abstract;
 			$(toggle).click(function(e) {
 				var abs = $(e.currentTarget.abstract);
 				if (abs.css('display') == 'none') {
-					//abs.css('display', 'block');
-					abs.fadeIn();
+					abs.css('display', 'block');
+					//abs.fadeIn();
 				} else {
-					abs.fadeOut();
-					//abs.css('display', 'none');
+					//abs.fadeOut();
+					abs.css('display', 'none');
 				}
 			});
 			//abstract.onclick = toggleAbstract;
@@ -221,6 +231,12 @@ span.abstoggle {
      text-decoration:underline;
 }
 
+span.abstract, span.abstract>p {
+	font-size: 12pt;
+	margin-top: 15pt;
+	margin-bottom: 15pt;
+}
+
 </style>
 <title>OWLS</title>
 </head>
@@ -292,10 +308,15 @@ span.abstoggle {
 
 <ul>
 <li>27 May 2020 (OWLS). <a href="http://www.cs.cornell.edu/~kozen/">Dexter Kozen</a>, Cornell University, "Brzozowski derivatives as distributive laws". <i>Chair: Alexandra Silva</i></li>
-<li>13 May 2020 (OWLS). <a href="https://www.mimuw.edu.pl/~klin/">Bartek Klin</a>, Warsaw University, "Monadic monadic second order logic". <i>Chair: Jamie Vicary</i></li>
+<li>13 May 2020 (OWLS). <a href="https://www.mimuw.edu.pl/~klin/">Bartek Klin</a>, Warsaw University, "Monadic monadic second order logic". <i>Chair: Jamie Vicary</i> <span class="abstract">Monadic second order logic (MSO) is usually studied over specific kinds of structures, be it finite words, infinite words, finite or infinite trees, total orders of various shapes, etc. A monad is a notion of "a kind of structures" that covers these and many other examples. One can formulate an abstract definition of MSO for a generic monad. I will explain how this is done, and I will describe some conditions that a monad should satisfy to ensure a basic "sanity check": that every definable language is recognized by a finite algebra.
+
+(joint work with Mikołaj Bojańczyk and Julian Salamanca)</span></li>
 <li>29 April 2020 (OWLS). <a href="https://www.irif.fr/~petrisan/">Daniela Petrisan</a>, University of Paris, "Combining probabilistic and non-deterministic choice via weak distributive laws" <a href="https://www.youtube.com/watch?v=nZLXeVNljy0&t=5s">(video)</a>. <i>Chair: Pawel Sobocinski</i></li>
-<li>15 April 2020 (OWLS). <a href="https://www-i2.informatik.rwth-aachen.de/~katoen/">Joost-Pieter Katoen</a>, RWTH Aachen University, "Termination of probabilistic programs" <a href="https://www.youtube.com/watch?v=25uuBNISTY8">(video)</a>. <i>Chair: Alexandra Silva</i></li>
-<li>1 April 2020 (OWLS). <a href="https://www.imperial.ac.uk/people/k.buzzard">Kevin Buzzard</a>, Imperial College London, "Is HoTT the way to do mathematics?". <i>Chair: Jamie Vicary</i> <a href="https://www.youtube.com/watch?v=q5-pykbfViA">(video)</a> <span class="abstoggle">(abstract)</span><span class="abstract"><br>THE ABSTRACT</span></li>
+<li>15 April 2020 (OWLS). <a href="https://www-i2.informatik.rwth-aachen.de/~katoen/">Joost-Pieter Katoen</a>, RWTH Aachen University, "Termination of probabilistic programs". <i>Chair: Alexandra Silva</i> <a href="https://www.youtube.com/watch?v=25uuBNISTY8">(video)</a> <span class="abstract"><p>Program termination is a key question in program verification. This talk considers the termination of probabilistic programs, programs that can describe randomised algorithms and more recently received attention in machine learning. Probabilistic termination has several nuances and has some unexpected effects. Programs may diverge with zero probability; they almost-surely terminate (AST). Two AST-programs run in sequence may have an infinite expected run-time, though each of its constituents has a finite expected run-time.</p>
+<p>
+This talk will demystify the notions of probabilistic termination, its surprising effects, and its hardness ("degree of undecidability"). We will show a simple proof rule for deciding AST.</p>
+</span></li>
+<li>1 April 2020 (OWLS). <a href="https://www.imperial.ac.uk/people/k.buzzard">Kevin Buzzard</a>, Imperial College London, "Is HoTT the way to do mathematics?". <i>Chair: Jamie Vicary</i> <a href="https://www.youtube.com/watch?v=q5-pykbfViA">(video)</a> <span class="abstract">THE ABSTRACT</span></li>
 </ul>
 
 
