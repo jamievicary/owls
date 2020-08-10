@@ -296,7 +296,22 @@ span.abstract, span.abstract>p {
 <ul>
 
 
-<li>12 August 2020 (OWLS). <a href="https://www7.in.tum.de/~esparza/">Javier Esparza</a>, Technical University of Munich, "TBA". <i>Chair: Pawel Sobocinski</i></li>
+<li>12 August 2020 (OWLS). <a href="https://www7.in.tum.de/~esparza/">Javier Esparza</a>, Technical University of Munich, "An Efficient Normalisation Procedure for Linear Temporal Logic". <i>Chair: Pawel Sobocinski</i><span class="abstract">
+In the mid 80s, Lichtenstein, Pnueli, and Zuck proved a normal form for
+formulas of LTL with past operators, which Manna and Pnueli then used as the
+basis of their famous classification of temporal formulas. Some years later,
+Chang, Manna, and Pnueli built on this result to derive a similar normal form for
+the future fragment of LTL. Both normalisation procedures had a non-elementary
+worst-case blow-up, and followed an involved path from LTL formulas to counter-free
+automata to star-free regular expressions and back to LTL.<br>
+We improve on both points. We present a purely syntactic normalisation procedure
+from LTL to LTL, with single exponential blow-up, that can be implemented in a few
+dozen lines of Standard ML code. As an application, we derive a simple algorithm to
+translate LTL into deterministic Rabin automata. The algorithm normalises the
+formula, translates it into a special very weak alternating automaton, and applies a
+simple determinisation procedure, valid only for these special automata.<br>
+This is joint work with Salomon Sickert that appeared in LICS 2020
+</span></li>
 <li>26 August 2020 (OWLS). <a href="http://www.cs.technion.ac.il/users/orna/">Orna Grumberg</a>, Technion - Israel Institute of Technology , "TBA". <i>Chair: Alexandra Silva</i></li>
 <li>2 September 2020 (OWLS DEBATE). "Evolution or Revolution: The Future of Conferences in Computer Science". <i>Chair: Jamie Vicary</i></li>
 <li>9 September 2020 (OWLS). Filippo Bonchi, Universita di Pisa, "TBA". <i>Chair: Pawel Sobocinski</i></li>
