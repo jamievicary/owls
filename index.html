@@ -296,23 +296,23 @@ span.abstract, span.abstract>p {
 <ul>
 
 
-<li>12 August 2020 (OWLS). <a href="https://www7.in.tum.de/~esparza/">Javier Esparza</a>, Technical University of Munich, "An Efficient Normalisation Procedure for Linear Temporal Logic". <i>Chair: Pawel Sobocinski</i><span class="abstract">
-In the mid 80s, Lichtenstein, Pnueli, and Zuck proved a normal form for
-formulas of LTL with past operators, which Manna and Pnueli then used as the
-basis of their famous classification of temporal formulas. Some years later,
-Chang, Manna, and Pnueli built on this result to derive a similar normal form for
-the future fragment of LTL. Both normalisation procedures had a non-elementary
-worst-case blow-up, and followed an involved path from LTL formulas to counter-free
-automata to star-free regular expressions and back to LTL.<br><br>
-We improve on both points. We present a purely syntactic normalisation procedure
-from LTL to LTL, with single exponential blow-up, that can be implemented in a few
-dozen lines of Standard ML code. As an application, we derive a simple algorithm to
-translate LTL into deterministic Rabin automata. The algorithm normalises the
-formula, translates it into a special very weak alternating automaton, and applies a
-simple determinisation procedure, valid only for these special automata.<br><br>
-This is joint work with Salomon Sickert that appeared in LICS 2020
-</span></li>
-<li>26 August 2020 (OWLS). <a href="http://www.cs.technion.ac.il/users/orna/">Orna Grumberg</a>, Technion - Israel Institute of Technology , "TBA". <i>Chair: Alexandra Silva</i></li>
+
+<li>26 August 2020 (OWLS). <a href="http://www.cs.technion.ac.il/users/orna/">Orna Grumberg</a>, Technion - Israel Institute of Technology , "Automated Program Repair". <i>Chair: Alexandra Silva</i><span class=abstract>In the process of software development and maintenance, much efforts are invested in order to
+ensure that the product is as bug free as possible. Automating the repair process is highly
+desired.
+In this talk we present two approaches to automated program repair, based on formal methods.
+The first approach automatically repairs an erroneous program
+using a predefined set of mutations to the code (e.g., replacing ‘+’ with ‘-‘ ; ‘&gt;’ with ‘&lt;’, etc.).
+The repair algorithm goes through generate-validate iterations, which involve fault localization
+mechanism in order to disregard sets of unsuccessful repairs.
+The approach guarantees soundness and completeness with respect to a bounded notion of
+correctness.
+The second approach intertwines compositional Assume-Guarantee verification with repair.
+Automata learning is used for compositional verification. If an erroneous behavior is found,
+abduction assists in repairing the system by inferring new constraints that eliminate erroneous
+runs. Then, the verification proceeds for the repaired system.
+This is a joint work with: Hadar Frenkel, Corina Pasareanu, Bat-chen Rothenberg and Sarai
+Sheinvald. </span></li>
 <li>2 September 2020 (OWLS DEBATE). "Evolution or Revolution: The Future of Conferences in Computer Science". <i>Chair: Jamie Vicary</i></li>
 <li>9 September 2020 (OWLS). Filippo Bonchi, Universita di Pisa, "TBA". <i>Chair: Pawel Sobocinski</i></li>
 <li>23 September 2020 (OWLS). <a href="http://www.anupamdas.com/wp/">Anupam Das</a>, University of Birmingham, "TBA". <i>Chair: Jamie Vicary</i></li>
@@ -322,6 +322,22 @@ This is joint work with Salomon Sickert that appeared in LICS 2020
 <p>Here is the list of past seminars in reverse chronological order.</p>
 
 <ul>
+    <li>12 August 2020 (OWLS). <a href="https://www7.in.tum.de/~esparza/">Javier Esparza</a>, Technical University of Munich, "An Efficient Normalisation Procedure for Linear Temporal Logic". <i>Chair: Pawel Sobocinski</i><span class="abstract">
+    In the mid 80s, Lichtenstein, Pnueli, and Zuck proved a normal form for
+    formulas of LTL with past operators, which Manna and Pnueli then used as the
+    basis of their famous classification of temporal formulas. Some years later,
+    Chang, Manna, and Pnueli built on this result to derive a similar normal form for
+    the future fragment of LTL. Both normalisation procedures had a non-elementary
+    worst-case blow-up, and followed an involved path from LTL formulas to counter-free
+    automata to star-free regular expressions and back to LTL.<br><br>
+    We improve on both points. We present a purely syntactic normalisation procedure
+    from LTL to LTL, with single exponential blow-up, that can be implemented in a few
+    dozen lines of Standard ML code. As an application, we derive a simple algorithm to
+    translate LTL into deterministic Rabin automata. The algorithm normalises the
+    formula, translates it into a special very weak alternating automaton, and applies a
+    simple determinisation procedure, valid only for these special automata.<br><br>
+    This is joint work with Salomon Sickert that appeared in LICS 2020
+    </span></li>
 <li>5 August 2020 (OWLS-YR). <a href="http://umathur3.web.engr.illinois.edu">Umang Mathur</a>, University of Illinois at Urbana Champaign, "Verification of Uninterpreted and Partially Interpreted Programs". <i>Chair: Krishna. S</i>
 <a href="slides/umang.pdf">(slides)</a><span class="abstract">
 Uninterpreted programs are sequential programs with loops and recursion written over a first order vocabulary where the constant, function and predicate symbols used are completely uninterpreted. The input to an uninterpreted program is a first order structure which also determines the semantics of such a programs. The verification question in this setting asks if an uninterpreted a program meets all its assertions on all input structures. In this talk, I will discuss the decidability boundaries for the verification question of uninterpreted programs. In general, the problem is undecidable, but becomes decidable for a sub-class, called coherent uninterpreted programs. The decidability result is tight in that slightly relaxing the coherence criteria leads to undecidability.
