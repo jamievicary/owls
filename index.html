@@ -34,36 +34,37 @@
     }
 	function setPreface() {
 
-		var t = new Date("2020-04-01T14:00:00+01:00");
+		//var t = new Date("2020-04-01T14:00:00+01:00");
+		var t = new Date("2020-04-01T16:00:00+01:00");
 		var week = 7 * 24 * 60 * 60 * 1000;
 		var late = ((new Date()) - t) % week;
 		var wait = week - late;
 		var html = "";
 
 		// Talk started less than 45 minutes ago
-		if (late < 45 * 60 * 1000) {
-			html = "The seminar is underway, join in here:"
+		if (late < /* 45 */ 90 * 60 * 1000) {
+			html = "The debate is underway, join in here:"
 				+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
 		}
 
 		// Talk started between 45 and 60 minutes ago
-		else if (late < 60 * 60 * 1000) {
-			html = "The talk has finished, but you can join in the post-seminar coffee break here:"
+		else if (late < /* 60 */ 90 * 60 * 1000) {
+			html = "The debate has finished, but you can join in the post-debate coffee break here:"
 				+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
 		}
 
 		// Less than 15 minutes until the next talk
 		else if (wait <= 15 * 60 * 1000) {
 			// The talk is less than 15 minutes in the future
-			html = "The next talk starts in " + msToDHM(wait) + "."
-				+ "<br>Join in with the pre-seminar coffee break here:"
+			html = "The debate starts in " + msToDHM(wait) + "."
+				+ "<br>Join in with the pre-debate coffee break here:"
 				+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
 		}
 
 		// No talk is about to start or end
 		else if (wait > 15 * 60 * 1000) {
 			// The talk is more than 15 minutes in the future
-			html = "The next talk starts in " + msToDHM(wait) + ".";
+			html = "The debate starts in " + msToDHM(wait) + ".";
 		}
 
 
