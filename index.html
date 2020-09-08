@@ -42,7 +42,7 @@
 		var html = "";
 
 		// Talk started less than 45 minutes ago
-		if (late < /45 * 60 * 1000) {
+		if (late < 45 * 60 * 1000) {
 			html = "The seminar is underway, join in here:"
 				+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
 		}
@@ -258,6 +258,7 @@ span.abstract, span.abstract>* {
      </table>
  </center>
 
+ <center id="" onload=""><b>The seminar has shifted later by 1 hour, and now starts at 2pm UTC</b></center>
  <center id="preface" onload="startPreface()">...</center>
 <script>
     setPreface();
