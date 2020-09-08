@@ -35,36 +35,36 @@
 	function setPreface() {
 
 		//var t = new Date("2020-04-01T14:00:00+01:00");
-		var t = new Date("2020-04-01T16:00:00+01:00");
+		var t = new Date("2020-04-01T15:00:00+01:00");
 		var week = 7 * 24 * 60 * 60 * 1000;
 		var late = ((new Date()) - t) % week;
 		var wait = week - late;
 		var html = "";
 
 		// Talk started less than 45 minutes ago
-		if (late < /* 45 */ 90 * 60 * 1000) {
-			html = "The debate is underway, join in here:"
+		if (late < /45 * 60 * 1000) {
+			html = "The seminar is underway, join in here:"
 				+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
 		}
 
 		// Talk started between 45 and 60 minutes ago
-		else if (late < /* 60 */ 90 * 60 * 1000) {
-			html = "The debate has finished, but you can join in the post-debate coffee break here:"
+		else if (late < 60 * 60 * 1000) {
+			html = "The seminar has finished, but you can join in the post-seminar coffee break here:"
 				+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
 		}
 
 		// Less than 15 minutes until the next talk
 		else if (wait <= 15 * 60 * 1000) {
 			// The talk is less than 15 minutes in the future
-			html = "The debate starts in " + msToDHM(wait) + "."
-				+ "<br>Join in with the pre-debate coffee break here:"
+			html = "The next seminar starts in " + msToDHM(wait) + "."
+				+ "<br>Join in with the pre-seminar coffee break here:"
 				+ "<br><a href='https://zoom.us/j/177472153'>https://zoom.us/j/177472153</a>";
 		}
 
 		// No talk is about to start or end
 		else if (wait > 15 * 60 * 1000) {
 			// The talk is more than 15 minutes in the future
-			html = "The debate starts in " + msToDHM(wait) + ".";
+			html = "The seminar starts in " + msToDHM(wait) + ".";
 		}
 
 
@@ -295,44 +295,6 @@ span.abstract, span.abstract>* {
      <p>Here is the list of upcoming seminars. </p>
 
 <ul>
-
-
-
-
-<li>2 September 2020 (OWLS DEBATE), <b>3pm UTC</b>. <i>Panel:</i> <a href="http://brendanfong.com/">Brendan Fong</a>, MIT; <a href="https://www.microsoft.com/en-us/research/people/nicimm/">Nicole Immorlica</a>, Microsoft Research; <a href="http://irif.fr/~kesner">Delia Kesner</a>, Université de Paris (IRIF); <a href="http://cis.upenn.edu/~bcpierce">Benjamin Pierce</a>, University of Pennsylvania; <a href="http://www.cs.tu-dortmund.de/nps/en/Home/Personen/S/Schwentick__Thomas.html">Thomas Schwentick</a>, Technische Universität Dortmund; <a href="http://cs.rice.edu/~vardi">Moshe Vardi</a>, Rice University. "Evolution or Revolution? The Future of Conferences in Theoretical Computer Science". <i>Chair: Jamie Vicary</i>
-<span class=abstract>
-<p>
-The entire community is invited to participate in a debate on the future of the conference system in theoretical computer science. This will provide a rare community-wide opportunity for us to discuss the strengths and weaknesses of our current system, and consider if we can do better. Questions will be asked by members of the audience, and answered by our panel members.
-</p>
-<p>
-The scope of the debate is all aspects of our publishing and community
-traditions, characterised by prestige earned mostly through
-publication in competitive conferences, and frequent local and
-international travel. Possible topics for discussion include the need
-to publish in conferences for career progression, which usually
-involves burning carbon; wasted reviewing effort when good papers are
-rejected from highly competitive conferences; the extent of our
-responsibility as a community to respond to climate change;
-alternative publishing models, like the journal-focussed system used
-in mathematics; high costs of conference travel and registration;
-virtual conference advantages, disadvantages and best practice;
-improving equality, diversity and access; consequences and response to
-COVID-19; and the role of professional bodies. These topics have many
-tight relationships, and need to be discussed together to gain a full
-understanding of the issues involved.
-</p>
-<p>
-The following links provide further reading on topics related to the debate:
-<ul>
-<li>Antoine Amarilli, Thomas Colcombet, Hugo Férée and Thomas Schwentick (2020), <a href="https://tcs4f.org">"Pledge for Sustainable Research in Theoretical Computer Science"</a></li>
-<li>Boaz Barak (2016), <a href="https://cacm.acm.org/magazines/2016/6/202644-computer-science-should-stay-young/fulltext">"Computer Science should Stay Young"</a></li>
-<li>Lance Fortnow (2009), <a href="https://cacm.acm.org/magazines/2009/8/34492-viewpoint-time-for-computer-science-to-grow-up/fulltext">"Time for Computer Science to Grow Up"</a></li>
-<li>Benjamin Pierce (2020), <a href="https://cacm.acm.org/magazines/2020/3/243024-conferences-in-an-era-of-expensive-carbon/fulltext">"Conferences in an Era of Expensive
-Carbon"</a></li>
-<li>Moshe Vardi (2020), <a href="https://cacm.acm.org/magazines/2020/1/241717-publish-and-perish/fulltext">"Publish and Perish"</a></li>
-</ul>
-</p>
-</span></li>
 <li>9 September 2020 (OWLS). Filippo Bonchi, Universita di Pisa, "Functorial Semantics: from Lawvere to Carboni-Walters". <i>Chair: Pawel Sobocinski</i>
     <span class="abstract">
     Various kinds of relational algebras have been studied since long time. The traditional approach consists in giving an algebraic theory, namely a signature and a set of equations. Unfortunately, the equations often turn out to be incomplete, unless one uses more sophisticated logics (e.g, Horn clauses).
@@ -370,6 +332,40 @@ Carbon"</a></li>
 <p>Here is the list of past seminars in reverse chronological order.</p>
 
 <ul>
+<li>2 September 2020 (OWLS DEBATE), <b>3pm UTC</b>. <i>Panel:</i> <a href="http://brendanfong.com/">Brendan Fong</a>, MIT; <a href="https://www.microsoft.com/en-us/research/people/nicimm/">Nicole Immorlica</a>, Microsoft Research; <a href="http://irif.fr/~kesner">Delia Kesner</a>, Université de Paris (IRIF); <a href="http://cis.upenn.edu/~bcpierce">Benjamin Pierce</a>, University of Pennsylvania; <a href="http://www.cs.tu-dortmund.de/nps/en/Home/Personen/S/Schwentick__Thomas.html">Thomas Schwentick</a>, Technische Universität Dortmund; <a href="http://cs.rice.edu/~vardi">Moshe Vardi</a>, Rice University. "Evolution or Revolution? The Future of Conferences in Theoretical Computer Science". <i>Chair: Jamie Vicary</i>
+<span class=abstract>
+<p>
+The entire community is invited to participate in a debate on the future of the conference system in theoretical computer science. This will provide a rare community-wide opportunity for us to discuss the strengths and weaknesses of our current system, and consider if we can do better. Questions will be asked by members of the audience, and answered by our panel members.
+</p>
+<p>
+The scope of the debate is all aspects of our publishing and community
+traditions, characterised by prestige earned mostly through
+publication in competitive conferences, and frequent local and
+international travel. Possible topics for discussion include the need
+to publish in conferences for career progression, which usually
+involves burning carbon; wasted reviewing effort when good papers are
+rejected from highly competitive conferences; the extent of our
+responsibility as a community to respond to climate change;
+alternative publishing models, like the journal-focussed system used
+in mathematics; high costs of conference travel and registration;
+virtual conference advantages, disadvantages and best practice;
+improving equality, diversity and access; consequences and response to
+COVID-19; and the role of professional bodies. These topics have many
+tight relationships, and need to be discussed together to gain a full
+understanding of the issues involved.
+</p>
+<p>
+The following links provide further reading on topics related to the debate:
+<ul>
+<li>Antoine Amarilli, Thomas Colcombet, Hugo Férée and Thomas Schwentick (2020), <a href="https://tcs4f.org">"Pledge for Sustainable Research in Theoretical Computer Science"</a></li>
+<li>Boaz Barak (2016), <a href="https://cacm.acm.org/magazines/2016/6/202644-computer-science-should-stay-young/fulltext">"Computer Science should Stay Young"</a></li>
+<li>Lance Fortnow (2009), <a href="https://cacm.acm.org/magazines/2009/8/34492-viewpoint-time-for-computer-science-to-grow-up/fulltext">"Time for Computer Science to Grow Up"</a></li>
+<li>Benjamin Pierce (2020), <a href="https://cacm.acm.org/magazines/2020/3/243024-conferences-in-an-era-of-expensive-carbon/fulltext">"Conferences in an Era of Expensive
+Carbon"</a></li>
+<li>Moshe Vardi (2020), <a href="https://cacm.acm.org/magazines/2020/1/241717-publish-and-perish/fulltext">"Publish and Perish"</a></li>
+</ul>
+</p>
+</span></li>
 	<li>26 August 2020 (OWLS). <a href="http://www.cs.technion.ac.il/users/orna/">Orna Grumberg</a>, Technion - Israel Institute of Technology , "Automated Program Repair". <i>Chair: Alexandra Silva</i> <span class=abstract>In the process of software development and maintenance, much efforts are invested in order to
 	ensure that the product is as bug free as possible. Automating the repair process is highly
 	desired.
