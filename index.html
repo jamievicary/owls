@@ -2,37 +2,37 @@
 <html lang="en">
 <head>
 
-<script src="jquery-3.5.1.min.js"></script>
-<script>
-    function pluralize(str, num) {
-    	if (num == 1) return str;
-    	return str + "s";
-    }
-    function msToDHM(ms) {
-    	var days = Math.floor(ms / (24 * 60 * 60 * 1000));
-    	var msRemaining = ms - days * 24 * 60 * 60 * 1000;
-    	var hours = Math.floor(msRemaining / (60 * 60 * 1000));
-    	msRemaining = msRemaining - hours * 60 * 60 * 1000;
-    	var minutes = Math.floor(msRemaining / (60 * 1000));
+	<script src="jquery-3.5.1.min.js"></script>
+	<script>
+		function pluralize(str, num) {
+			if (num == 1) return str;
+			return str + "s";
+		}
+		function msToDHM(ms) {
+			var days = Math.floor(ms / (24 * 60 * 60 * 1000));
+			var msRemaining = ms - days * 24 * 60 * 60 * 1000;
+			var hours = Math.floor(msRemaining / (60 * 60 * 1000));
+			msRemaining = msRemaining - hours * 60 * 60 * 1000;
+			var minutes = Math.floor(msRemaining / (60 * 1000));
 
-    	var dayStr = days.toString();
-    	var hourStr = hours.toString();
-    	var minStr = minutes.toString();
+			var dayStr = days.toString();
+			var hourStr = hours.toString();
+			var minStr = minutes.toString();
 
-    	if ((days == 0) && (hours == 0)) {
-    		return minStr + " " + pluralize("minute", minutes);
-    	}
+			if ((days == 0) && (hours == 0)) {
+				return minStr + " " + pluralize("minute", minutes);
+			}
 
-    	if (days == 0) {
-			return hourStr + " " + pluralize("hour", hours) + " and "
+			if (days == 0) {
+				return hourStr + " " + pluralize("hour", hours) + " and "
 				+ minStr + " " + pluralize("minute", minutes);
-    	}
+			}
 
-        return dayStr + " " + pluralize("day", days) + ", "
-            + hourStr + " " + pluralize("hour", hours) + " and "
-            + minStr + " " + pluralize("minute", minutes);
-    }
-	function setPreface() {
+			return dayStr + " " + pluralize("day", days) + ", "
+			+ hourStr + " " + pluralize("hour", hours) + " and "
+			+ minStr + " " + pluralize("minute", minutes);
+		}
+		function setPreface() {
 
 		//var t = new Date("2020-04-01T14:00:00+01:00");
 		var t = new Date("2020-04-01T15:00:00+01:00");
@@ -44,21 +44,21 @@
 		// Talk started less than 45 minutes ago
 		if (late < 45 * 60 * 1000) {
 			html = "The seminar is underway, join in here:"
-				+ "<br><a href='https://us02web.zoom.us/j/177472153?pwd=MFgwd0EzY05QSGtpSDc2dU16aG9wdz09'>https://us02web.zoom.us/j/177472153?pwd=MFgwd0EzY05QSGtpSDc2dU16aG9wdz09</a>";
+			+ "<br><a href='https://us02web.zoom.us/j/177472153?pwd=MFgwd0EzY05QSGtpSDc2dU16aG9wdz09'>https://us02web.zoom.us/j/177472153?pwd=MFgwd0EzY05QSGtpSDc2dU16aG9wdz09</a>";
 		}
 
 		// Talk started between 45 and 60 minutes ago
 		else if (late < 60 * 60 * 1000) {
 			html = "The seminar has finished, but you can join in the post-seminar coffee break here:"
-				+ "<br><a href='https://us02web.zoom.us/j/177472153?pwd=MFgwd0EzY05QSGtpSDc2dU16aG9wdz09'>https://us02web.zoom.us/j/177472153?pwd=MFgwd0EzY05QSGtpSDc2dU16aG9wdz09</a>";
+			+ "<br><a href='https://us02web.zoom.us/j/177472153?pwd=MFgwd0EzY05QSGtpSDc2dU16aG9wdz09'>https://us02web.zoom.us/j/177472153?pwd=MFgwd0EzY05QSGtpSDc2dU16aG9wdz09</a>";
 		}
 
 		// Less than 15 minutes until the next talk
 		else if (wait <= 15 * 60 * 1000) {
 			// The talk is less than 15 minutes in the future
 			html = "The next seminar starts in " + msToDHM(wait) + "."
-				+ "<br>Join in with the pre-seminar coffee break here:"
-				+ "<br><a href='https://us02web.zoom.us/j/177472153?pwd=MFgwd0EzY05QSGtpSDc2dU16aG9wdz09'>https://us02web.zoom.us/j/177472153?pwd=MFgwd0EzY05QSGtpSDc2dU16aG9wdz09</a>";
+			+ "<br>Join in with the pre-seminar coffee break here:"
+			+ "<br><a href='https://us02web.zoom.us/j/177472153?pwd=MFgwd0EzY05QSGtpSDc2dU16aG9wdz09'>https://us02web.zoom.us/j/177472153?pwd=MFgwd0EzY05QSGtpSDc2dU16aG9wdz09</a>";
 		}
 
 		// No talk is about to start or end
@@ -95,12 +95,12 @@
             	$(abstract).html('<p>' + html + '</p>');
             }
 
-			$(abstract).css('display', 'none');
-			toggle[0].abstract = abstract;
-			$(toggle).click(function(e) {
-				var abs = $(e.currentTarget.abstract);
-				if (abs.css('display') == 'none') {
-					abs.css('display', 'block');
+            $(abstract).css('display', 'none');
+            toggle[0].abstract = abstract;
+            $(toggle).click(function(e) {
+            	var abs = $(e.currentTarget.abstract);
+            	if (abs.css('display') == 'none') {
+            		abs.css('display', 'block');
 					//abs.fadeIn();
 				} else {
 					//abs.fadeOut();
@@ -108,7 +108,7 @@
 				}
 			});
 
-		}
+        }
 
 		// Ensure videos and slides open in a different tab
 		links = $("a");
@@ -124,230 +124,187 @@
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162050937-1"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
 
-  gtag('config', 'UA-162050937-1');
+	gtag('config', 'UA-162050937-1');
 </script>
-  <meta charset="utf-8"/>
-  <style>
+<meta charset="utf-8"/>
+<style>
 
-* {
-   font-family: Verdana, Geneva, sans-serif;
-}
-
-body {
-	font-size: 20px;
-}
-
-span.abstract, span.abstract>* {
-	font-size: 12pt !important;
-	margin-top: 15pt !important;
-	margin-bottom: 15pt !important;
-}
-
-
-#preface {
-    font-style: oblique;
-}
-
-body {
-	background-color: #ccc;
-}
-
- #grid {
-   width: 100%;
-   display: grid;
-   grid-column-gap: 10px;
-   grid-template-columns: auto 1000px auto;
- }
-
- #logo {
-   width: 120px;
-   margin-left: 90px;
-   margin-right: 0px;
-   padding-top: 20px;
-   border-width: 1px;
-   border-color: black;
-   margin-top: 0px;
-   margin-bottom: 20px;
- }
-
- #c {
-   overflow: auto;
-   text-align: xjustify;
- }
-
- #title {
-
- }
-
- #table.logoTable {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-li {
-	margin: 5px
-}
-
-td {
-	text-align: center;
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
-img.speaker {
-	height: 200px;
-}
-
-img.sponsor {
-	height: 80px;
-	padding: 8px;
-	background-color: white;
-}
-
-h2 {
-	margin-top: 30px;
-}
-
-#iframe.gmap {
-  border: none;
-  overflow: hidden;
-}
-
-.emphasise {
-  color: red;
-  font-weight: bold;
-}
-	  
-@media only screen and (max-width: 1020px) {
-	#grid {
-		display: table-cell;
-		width: 100%;
-		padding: 0 1em;
+	* {
+		font-family: Verdana, Geneva, sans-serif;
 	}
-}
 
-span.abs {
-	display: none;
-}
+	body {
+		font-size: 20px;
+	}
 
-span.abstoggle {
-     cursor:pointer;
-     color:blue;
-     text-decoration:underline;
-}
+	span.abstract, span.abstract>* {
+		font-size: 12pt !important;
+		margin-top: 15pt !important;
+		margin-bottom: 15pt !important;
+	}
+
+
+	#preface {
+		font-style: oblique;
+	}
+
+	body {
+		background-color: #ccc;
+	}
+
+	#grid {
+		width: 100%;
+		display: grid;
+		grid-column-gap: 10px;
+		grid-template-columns: auto 1000px auto;
+	}
+
+	#logo {
+		width: 120px;
+		margin-left: 90px;
+		margin-right: 0px;
+		padding-top: 20px;
+		border-width: 1px;
+		border-color: black;
+		margin-top: 0px;
+		margin-bottom: 20px;
+	}
+
+	#c {
+		overflow: auto;
+		text-align: xjustify;
+	}
+
+	#title {
+
+	}
+
+	#table.logoTable {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	li {
+		margin: 5px
+	}
+
+	td {
+		text-align: center;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	img.speaker {
+		height: 200px;
+	}
+
+	img.sponsor {
+		height: 80px;
+		padding: 8px;
+		background-color: white;
+	}
+
+	h2 {
+		margin-top: 30px;
+	}
+
+	#iframe.gmap {
+		border: none;
+		overflow: hidden;
+	}
+
+	.emphasise {
+		color: red;
+		font-weight: bold;
+	}
+
+	@media only screen and (max-width: 1020px) {
+		#grid {
+			display: table-cell;
+			width: 100%;
+			padding: 0 1em;
+		}
+	}
+
+	span.abs {
+		display: none;
+	}
+
+	span.abstoggle {
+		cursor:pointer;
+		color:blue;
+		text-decoration:underline;
+	}
 
 </style>
 <title>OWLS</title>
 </head>
 <body onload="enableToggles()">
-  <div id="grid">
-    <div id="a"></div>
-    <div id="c">
-    	<center>
-      <table id="logoTable">
-        <tr>
-          <td>
-           <span><h1 style="margin-bottom: -20px">Online Worldwide Seminar on</h1></span>
-           <span><h1>Logic and Semantics (OWLS)</h1></span>
-         </td>
-          <td><img id="logo" src="owls_logo.svg" alt="OWLS logo"></td>
-       </tr>
-     </table>
- </center>
+	<div id="grid">
+		<div id="a"></div>
+		<div id="c">
+			<center>
+				<table id="logoTable">
+					<tr>
+						<td>
+							<span><h1 style="margin-bottom: -20px">Online Worldwide Seminar on</h1></span>
+							<span><h1>Logic and Semantics (OWLS)</h1></span>
+						</td>
+						<td><img id="logo" src="owls_logo.svg" alt="OWLS logo"></td>
+					</tr>
+				</table>
+			</center>
 
- <center id="" onload=""><b>The seminar is held on Wednesdays at 2pm UTC</b></center>
- <br>
- <center id="preface" onload="startPreface()">...</center>
-<script>
-    setPreface();
-	setInterval(setPreface, 1000);
-</script>
+			<center id="" onload=""><b>The seminar is held on Wednesdays at 2pm UTC</b></center>
+			<br>
+			<center id="preface" onload="startPreface()">...</center>
+			<script>
+				setPreface();
+				setInterval(setPreface, 1000);
+			</script>
 
 <!--
 <center><i>Seminar Zoom Link: <a href="https://zoom.us/j/177472153">https://zoom.us/j/177472153</a></i></center>
-	-->
+-->
 
-     <h2 id="intro">Introduction</h2>
+<h2 id="intro">Introduction</h2>
 
-     <p>The <i>Online Worldwide Seminar on Logic and Semantics</i> is a new series of research talks, highlighting the most exciting recent work in the international computer science logic community. The scope of the seminar series is roughly that of the major computer science logic conferences such as LICS, ICALP and FSCD. It takes place on most Wednesdays, with a focus every other week on the work of young researchers.</p>
+<p>The <i>Online Worldwide Seminar on Logic and Semantics</i> is a new series of research talks, highlighting the most exciting recent work in the international computer science logic community. The scope of the seminar series is roughly that of the major computer science logic conferences such as LICS, ICALP and FSCD. It takes place on most Wednesdays, with a focus every other week on the work of young researchers.</p>
 
-     <p>In this time of restricted international travel, a key aim of this series is to provide a forum for the informal discussion and social interaction that is so important for the progress of science. To facilitate this, the seminar incorporates in virtual form a number of features more normally associated with physical meetings:
-     </p>
-     <ul>
-     	<li>Virtual "coffee breaks" before and after the seminar, allowing participants to chat in small groups, replicating the social element of a real-world conference.</li>
-     	<li>Robust technology platform supporting hundreds of interactive participants.</li>
-     	<li>Live-stream of the speaker's slides visible alongside the speaker's face, allowing nuanced communication at a human level.</li>
-     	<li>Chairperson to introduce the speaker, facilitate questions from the audience, and keep proceedings running on time.</li>
-     	<li>Audience members whose question is selected by the chairperson can deliver it in full audio and video, giving a natural interaction with the speaker.</li>
-     	<li>No need to register, just show up.</li>
-     </ul>
+<p>In this time of restricted international travel, a key aim of this series is to provide a forum for the informal discussion and social interaction that is so important for the progress of science. To facilitate this, the seminar incorporates in virtual form a number of features more normally associated with physical meetings:
+</p>
+<ul>
+	<li>Virtual "coffee breaks" before and after the seminar, allowing participants to chat in small groups, replicating the social element of a real-world conference.</li>
+	<li>Robust technology platform supporting hundreds of interactive participants.</li>
+	<li>Live-stream of the speaker's slides visible alongside the speaker's face, allowing nuanced communication at a human level.</li>
+	<li>Chairperson to introduce the speaker, facilitate questions from the audience, and keep proceedings running on time.</li>
+	<li>Audience members whose question is selected by the chairperson can deliver it in full audio and video, giving a natural interaction with the speaker.</li>
+	<li>No need to register, just show up.</li>
+</ul>
 
-     <p> Talks are given by invitation of the <a href="#sc">organizing committee</a>. Feedback is warmly encouraged; if you have any comments or ideas, feel free to get in touch with an organizer.</p>
+<p> Talks are given by invitation of the <a href="#sc">organizing committee</a>. Feedback is warmly encouraged; if you have any comments or ideas, feel free to get in touch with an organizer.</p>
 
-	  <h2 id="mailing">Mailing list</h2>
+<h2 id="mailing">Mailing list</h2>
 
-	  <p>The OWLS mailing list sends reminders before each seminar, and announces upcoming seminars. To subscribe, or manage an existing subscription, visit this link:</p>
-	  <ul><li><a href="https://lists.cam.ac.uk/mailman/listinfo/cl-owls">https://lists.cam.ac.uk/mailman/listinfo/cl-owls</a></li></ul>
-    <p>Messages will be sent from the address <i>cl-owls@lists.cam.ac.uk</i>.</p>
+<p>The OWLS mailing list sends reminders before each seminar, and announces upcoming seminars. To subscribe, or manage an existing subscription, visit this link:</p>
+<ul><li><a href="https://lists.cam.ac.uk/mailman/listinfo/cl-owls">https://lists.cam.ac.uk/mailman/listinfo/cl-owls</a></li></ul>
+<p>Messages will be sent from the address <i>cl-owls@lists.cam.ac.uk</i>.</p>
 
-     <h2 id="programme">Programme</h2>
+<h2 id="programme">Programme</h2>
 
 <!-- blank template for new talk
 <li>DAY MONTH YEAR. <a href="HOMEPAGE">NAME</a>, INSTITUTION. "TITLE". <i>Chair: CHAIRPERSON</i> <a href="slides/LASTNAME.pdf">(slides)</a> <a href="YOUTUBE URL">(video)</a> <span class="abs">ABSTRACT.</span></li>
 -->
-	<p>Seminars take place on Wednesdays at 2pm UTC. An easy way to see the corresponding time in your own time zone is to add the OWLS calendar to your own calendar, with the following links: <a href="https://calendar.google.com/calendar/embed?src=iigkhoapdthqfpibn42s761dlc%40group.calendar.google.com&ctz=Europe%2FLondon">Google Calendar</a> <a href="https://calendar.google.com/calendar/ical/iigkhoapdthqfpibn42s761dlc%40group.calendar.google.com/public/basic.ics">Apple Calendar</a> </p>
-     <p>Seminars are 45 minutes long including questions, and will start at the advertised time. <a href="#coffeebreaks">As described below</a>, feel free to join early, or stay around after the end of the talk, to participate in the coffee breaks. A link to join the seminar is given in the <a href="#partinfo">participant information</a> below. Every other week, the seminar hosts a young researcher to present their work; these seminars are labelled OWLS-YR.</p>
-     <p>Here is the list of upcoming seminars. </p>
+<p>Seminars take place on Wednesdays at 2pm UTC. An easy way to see the corresponding time in your own time zone is to add the OWLS calendar to your own calendar, with the following links: <a href="https://calendar.google.com/calendar/embed?src=iigkhoapdthqfpibn42s761dlc%40group.calendar.google.com&ctz=Europe%2FLondon">Google Calendar</a> <a href="https://calendar.google.com/calendar/ical/iigkhoapdthqfpibn42s761dlc%40group.calendar.google.com/public/basic.ics">Apple Calendar</a> </p>
+<p>Seminars are 45 minutes long including questions, and will start at the advertised time. <a href="#coffeebreaks">As described below</a>, feel free to join early, or stay around after the end of the talk, to participate in the coffee breaks. A link to join the seminar is given in the <a href="#partinfo">participant information</a> below. Every other week, the seminar hosts a young researcher to present their work; these seminars are labelled OWLS-YR.</p>
+<p>Here is the list of upcoming seminars. </p>
 
 <ul>
 
-
-<li>9 December 2020 (OWLS). <a href="https://people.mpi-sws.org/~dreyer/">Derek Dreyer</a>, MPI-SWS, "Turning Iris Up to Eleven: Next Steps in Higher-Order Separation Logic". <i>Chair: Alexandra Silva</i></li>
-<span class="abstract">
-<p>
-Iris is a framework for higher-order concurrent separation logic,
-implemented in the Coq proof assistant, which we have been developing
-since 2014.  Originally designed for pedagogical purposes, Iris has
-grown into a ongoing, multi-institution project, with active
-collaborators at Aarhus University, BedRock Systems, Boston College,
-CNRS/LRI, Groningen University, INRIA, ITU Copenhagen, KU Leuven,
-Microsoft Research, MIT, MPI-SWS, NYU, Radboud University Nijmegen,
-Saarland University, and Vrije Universiteit Brussel, and over 35
-published papers studying or deploying Iris for verification of
-complex programs and programming language meta-theory in Rust, Go,
-OCaml, Scala, and more (https://iris-project.org).</p>
-<p>
-In this talk, we will present two brand new -- and very different --
-developments that have the potential to extend the reach of Iris even
-further.  The first is a new *ownership-based refinement type system*
-for C, which supports *automated* verification of C programs while at
-the same time being *foundational* (producing Iris proofs in Coq).
-The second is a complete "remodeling" of Iris, replacing its original
-step-indexed model with a *transfinite* step-indexed model in order to
-make Iris suitable for verification of liveness properties.</p>
-<p>
-For this talk, we will not assume any prior knowledge of Iris.
-Rather, we will briefly review the distinguishing features of Iris,
-and then explain the key insights behind the aforementioned new
-developments -- and the problems they are solving -- at a high level
-of abstraction.</p>
-<p>
-The first new development is joint work with Michael Sammler, Rodolphe
-Lepigre, Robbert Krebbers, Kayvan Memarian, and Deepak Garg.  The
-second is joint work with Simon Spies, Lennard Gäher, Daniel Gratzer,
-Joseph Tassarotti, Robbert Krebbers, and Lars Birkedal.</p>
-</span>
-
-<li>16 December 2020 (OWLS special Christmas edition). <a href="https://www.cs.rice.edu/~vardi/">Moshe Vardi</a>, Rice University, Lessons from COVID-19: Efficiency vs Resilience. <i>Chair: Nathanaël Fijalkow</i>
-<span class="abstract">
-<p>
-In both computer science and economics, efficiency is a cherished property. In computer science, the field of algorithms is almost solely focused on their efficiency. In economics, the main advantage of the free market is that it promises "economic efficiency." A major lesson from COVID-19 is that both fields have over-emphasized efficiency and under-emphasized resilience. I argue that resilience is a more important property than efficiency and discuss how the two fields can broaden their focus to make resilience a primary consideration. I will include a technical example, showing how we can shift the focus in strategic reasoning from efficiency to resilience.</span>
-</p>
-</li>
 
 
 </ul>
@@ -355,385 +312,440 @@ In both computer science and economics, efficiency is a cherished property. In c
 <p>Here is the list of past seminars in reverse chronological order.</p>
 
 <ul>
-<li>2 December 2020 (YR-OWLS). <a href="https://www.cs.ox.ac.uk/people/maaike.zwart/">Maaike Zwart</a>, University of Oxford, "Distributive Laws in the Boom Hierarchy". <i>Chair: S. Krishna</i><a href="slides/maaike.pdf">(slides)</a>
-<span class="abstract">
-<p>
-During my PhD research I have studied distributive laws for monads, and developed various no-go theorems. These theorems prove that monads with certain algebraic properties cannot be composed with each other via a distributive law.
 
-In this talk I will focus on examples, and share the intuition that I have developed from my results. All the examples in this talk will be based on the Boom hierarchy, a hierarchy of data structures which lends itself perfectly for the study of monad compositions. Based on which monads in this hierarchy do and do not compose with each other via a distributive law, I will make predictions about the behaviour of monad compositions in general.
-</p>
-</span></li>
+	<li>16 December 2020 (OWLS special Christmas edition). <a href="https://www.cs.rice.edu/~vardi/">Moshe Vardi</a>, Rice University, Lessons from COVID-19: Efficiency vs Resilience. <i>Chair: Nathanaël Fijalkow</i> <a href="https://youtu.be/NOFiAhkBqd0">(video)</a>
+		<span class="abstract">
+			<p>
+				In both computer science and economics, efficiency is a cherished property. In computer science, the field of algorithms is almost solely focused on their efficiency. In economics, the main advantage of the free market is that it promises "economic efficiency." A major lesson from COVID-19 is that both fields have over-emphasized efficiency and under-emphasized resilience. I argue that resilience is a more important property than efficiency and discuss how the two fields can broaden their focus to make resilience a primary consideration. I will include a technical example, showing how we can shift the focus in strategic reasoning from efficiency to resilience.
+			</span>
+		</p>
+	</li>
 
+	<li>9 December 2020 (OWLS). <a href="https://people.mpi-sws.org/~dreyer/">Derek Dreyer</a>, MPI-SWS, "Turning Iris Up to Eleven: Next Steps in Higher-Order Separation Logic". <i>Chair: Alexandra Silva</i>
+		<span class="abstract">
+			<p>
+				Iris is a framework for higher-order concurrent separation logic,
+				implemented in the Coq proof assistant, which we have been developing
+				since 2014.  Originally designed for pedagogical purposes, Iris has
+				grown into a ongoing, multi-institution project, with active
+				collaborators at Aarhus University, BedRock Systems, Boston College,
+				CNRS/LRI, Groningen University, INRIA, ITU Copenhagen, KU Leuven,
+				Microsoft Research, MIT, MPI-SWS, NYU, Radboud University Nijmegen,
+				Saarland University, and Vrije Universiteit Brussel, and over 35
+				published papers studying or deploying Iris for verification of
+				complex programs and programming language meta-theory in Rust, Go,
+			OCaml, Scala, and more (https://iris-project.org).</p>
+			<p>
+				In this talk, we will present two brand new -- and very different --
+				developments that have the potential to extend the reach of Iris even
+				further.  The first is a new *ownership-based refinement type system*
+				for C, which supports *automated* verification of C programs while at
+				the same time being *foundational* (producing Iris proofs in Coq).
+				The second is a complete "remodeling" of Iris, replacing its original
+				step-indexed model with a *transfinite* step-indexed model in order to
+			make Iris suitable for verification of liveness properties.</p>
+			<p>
+				For this talk, we will not assume any prior knowledge of Iris.
+				Rather, we will briefly review the distinguishing features of Iris,
+				and then explain the key insights behind the aforementioned new
+				developments -- and the problems they are solving -- at a high level
+			of abstraction.</p>
+			<p>
+				The first new development is joint work with Michael Sammler, Rodolphe
+				Lepigre, Robbert Krebbers, Kayvan Memarian, and Deepak Garg.  The
+				second is joint work with Simon Spies, Lennard Gäher, Daniel Gratzer,
+			Joseph Tassarotti, Robbert Krebbers, and Lars Birkedal.</p>
+		</span>
+	</li>
 
-<li>25 November 2020 (YR-OWLS). <a href="https://sites.google.com/view/francescogavazzo/home">Francesco Gavazzo</a>, University of Bologna, "Modal Reasoning = Metric Reasoning, via Lawvere". <i>Chair: Charles Grellois</i> <a href="slides/gavazzo.pdf">(slides)</a>
-<span class="abstract">
-<p>Mainstream formal analyses of software systems focus on extensional properties of program behaviour. Such properties ultimately deal with the input/output semantics of programs, this way giving information on what programs compute. There are several situations, however, where intensional properties of programs turn out to be crucial to ensure the correct behaviour of software systems. In these scenarios, one needs not only to know what output a program computes, but also how the program computes it. Typical examples of intensional aspects of computations include efficiency, resource usage, robustness with respect to errors, and privacy and security.</p>
-<p>In the last decades, these properties have been studied in isolation by means of type systems, denotational semantics, and operational techniques. More recently, uniform accounts of a large family of intensional aspects of computations (oftentimes referred to as coeffectful computations) have been proposed in terms of graded modal types and graded (co)monads.</p>
-<p>In this talk, I will present a general framework for studying operationally-based notions of program equivalence for languages with graded modal types. These notions of equivalence identify programs with the same intensional behaviour and thus allow for the intensional analysis of programs. The framework will be instantiated to study the intensional refinement of Abramsky's applicative bisimilarity (a coinductively-defined notion of equivalence for higher-order sequential languages) giving an abstract compositionality theorem generalising well-known results on intensional program behaviour such as Abadi's et al. Non-interference, Pfenning's Proof Irrelevance, and Reed and Pierce's Metric Preservation.</p>
-<p>Finally, a formal connection between the theory of intensional program equivalence and the theory of abstract program distance built on top of Lawvere's analysis of generalised metric spaces will be established, this way allowing for the transfer of results and techniques developed in the context of program metric to the realm of intensional analyses of languages with modal types. </p></span>	
-</li>
-    <li>18 November 2020 (OWLS). <a herf="https://people.mpi-sws.org/~joel/">Joël Ouaknine</a>, Max Planck Institute for Software Systems, "Holonomic Techniques, Periods, and Decision Problems". <i>Chair: Pawel Sobocinski</i>
-    <span class="abstract">
-    <p>Holonomic techniques have deep roots going back to Wallis, Euler, and Gauss, and have evolved in modern times as an important subfield of computer algebra, thanks in large part to the work of Zeilberger and others over the past three decades. In this talk, I will give an overview of the area, and in particular will present a select survey of known and original results on decision problems for holonomic sequences and functions. I will also discuss some surprising connections to the theory of periods and exponential periods, which are classical objects of study in algebraic geometry and number theory; in particular, I will relate the decidability of certain decision problems for holonomic sequences to deep conjectures about periods and exponential periods, notably those due to Kontsevich and Zagier.</p>
-    <p>Parts of this talk will be based on the paper "On Positivity and Minimality for Second-Order Holonomic Sequences", <a href="https://arxiv.org/abs/2007.12282">https://arxiv.org/abs/2007.12282</a>.</p>
-    </span></li>    
-<li>11 November 2020 (YR-OWLS). Abhisekh Sankaran, University of Cambridge, "Extension preservation in the finite and prefix classes of first order logic". <i>Chair : Koko Muroya</i> <a href="slides/sankaran.pdf">(slides)</a>
-<span class="abstract">
-<p>It is well known that the classic Łoś-Tarski preservation theorem fails in the finite: there are first-order definable classes of finite structures closed under extensions which are not definable (in the finite) in the existential fragment of first-order logic. We strengthen this by constructing for every n, first-order definable classes of finite structures closed under extensions which are not definable with n quantifier alternations. The classes we construct are definable in the extension of Datalog with negation and indeed in the existential fragment of transitive-closure logic. This answers negatively an open question posed by Rosen and Weinstein.
-</p>
-</span></li>
-    <li>4 November 2020 (OWLS). <a href="https://www.cs.huji.ac.il/~ornak/">Orna Kupferman</a>, Hebrew University,  Examining Classical Graph-Theory Problems from the Viewpoint of Formal-Verification Methods. <i>Chair: Alexandra Silva</i> <a href="slides/kupferman.ppt">(slides)</a>
-        <span class="abstract">
-        <p>The talk surveys a series of works that lift the rich semantics and structure of graphs, and the experience of the formal-verification community in reasoning about them, to classical graph-theoretical problems.
-        </p>
-        </span>
-    </li>
-    <li>28 October 2020 (YR-OWLS). <a href="https://sjunges.github.io/sebastian-junges/">Sebastian Junges</a>, UC Berkeley, "Finding Memoryless Policies in Partially Observable MDPs is 'Existential Theory of the Reals'-complete". <i>Chair: Nathanaël Fijalkow</i> <a href="slides/junges.pdf">(slides)</a>
-    <span class="abstract">
-    <p>Partially observable Markov Decision Processes  (POMDPs) are a prime model in sequential decision making.
-    They are heavily studied in operations research, artificial intelligence and verification, to name a few.
-    For POMDPs,  a good policy reaches the target with probability at some threshold,
-    and makes its decisions solely based on the previously made observations.
-    Deciding whether a good policy exists is undecidable.
-    One of the methods to solve instances of this reachability problem is to restrict the memory that the strategy may use.
-    This approach is commonly taking, e.g., in reinforcement learning for POMDPs.
-    In the first part of the talk, we consider memoryless strategies in POMDPs.
-    and show that this problem is as hard as the feasibility problem in parametric Markov Chain (pMC) analysis.</p>
-    <p>
-    In the second part of the talk, we consider this feasibility problem for pMCs.
-    Roughly, a pMC is a Markov chain with symbolic transitions. The feasibility problem asks:
-    Do values for the symbols exist such that in the induced parameter-free Markov chain, a target state is reached with probability at least a half.
-    We discuss the complexity landscape for variants of this decision problem.
-    In particular, we establish that feasibility in pMCs is complete for the complexity class "existential theory of the reals” (ETR).
-    Another example of an ETR-complete problem is  deciding whether a multivariate polynomial has a real root.
-    Together with the results of the first half of the talk,
-    this establishes that deciding whether there exists a good memoryless policy in a POMDP is ETR-complete.</p>
-    </span></li>
+	<li>2 December 2020 (YR-OWLS). <a href="https://www.cs.ox.ac.uk/people/maaike.zwart/">Maaike Zwart</a>, University of Oxford, "Distributive Laws in the Boom Hierarchy". <i>Chair: S. Krishna</i><a href="slides/maaike.pdf">(slides)</a>
+		<span class="abstract">
+			<p>
+				During my PhD research I have studied distributive laws for monads, and developed various no-go theorems. These theorems prove that monads with certain algebraic properties cannot be composed with each other via a distributive law.
 
-    <li>21 October 2020 (OWLS). <a href="https://www.fi.muni.cz/usr/kucera/">Antonin Kucera</a>, Masaryk University, "Efficient analysis of VASS termination complexity". <i>Chair: Pawel Sobocinski</i> <a href="https://youtu.be/D0QaX4DT_UY">(video)</a></li>
-<li>14 October 2020 (YR-OWLS). <a href="https://liacs.leidenuniv.nl/~basoldh/">Henning Basold</a>, Universteit Leiden, "Coalgebraic Communication Protocols and Session Types". <i>Chair: Koko Muroya</i> <a href="https://youtu.be/kpgDXfgjMOs">(video)</a></li>
-	 <span class="abstract">
-	 <p>This is joint work with Alex Keizer and Jorge A. Pérez.</p>
-
-<p>Compositional methods are central to the development and verification
-of software systems. They allow to break down large systems into
-smaller components, while enabling reasoning about the behaviour of the
-composed system. For concurrent and communicating systems, compositional
-techniques based on *behavioural type systems* have received much
-attention. By abstracting communication protocols as types, these type
-systems can statically check that programs interact with channels
-according to a certain protocol, whether the intended messages are
-exchanged in a certain order. For this talk, we will put on our
-coalgebraic spectacles to investigate *session types*, a widely studied
-class of behavioral type systems. We will seek a syntax-free
-description of session-based concurrency as states of coalgebras. The
-result will be a description of type equivalence, duality, and subtyping
-relations in terms of canonical coinductive presentations. In turn,
-this coinductive presentation makes it possible to elegantly derive a
-decidable type system with subtyping for π-calculus processes, in which
-the states of a coalgebra will serve as channel protocols. Going full
-circle, we will also exhibit a coalgebra structure on an existing
-session type system, and show that the relations and type system
-resulting from our coalgebraic perspective agree with the existing ones.</p>
-</span>
-	
-<li>7 October 2020 (OWLS). <a href="http://www.andrej.com">Andrej Bauer</a>, University of Ljubljana, "Effects in the real world". <i>Chair: Pawel Sobocinski</i> <a href="https://youtu.be/1mJhiV-yGj4">(video)</a>
- <span class="abstract">
-	 <p>Joint work with <a href="https://danel.ahman.ee">Danel Ahman</a>, University of Ljubljana.</p>
-
-<p>In modern languages, computational effects are often structured using monads or algebraic effects and handlers. These mechanisms excel at implementation of computational effects within the language itself. For instance, the familiar implementation of mutable state in terms of state-passing functions requires no native state, and can be implemented either as a monad or using handlers. One is naturally drawn to using these techniques also for dealing with actual effects, such as manipulation of native memory and access to hardware. These are represented inside the language as algebraic operations or a monad, but treated specially by the language's top-level runtime, which invokes corresponding operating system functionality. While this approach works in practice, one wishes that the ingenuity of the language implementors were better supported by a more flexible methodology with a sound theoretical footing.</p>
-<p>We address the issue by showing how to design a programming language based on runners of algebraic effects. We review runners, recast them as a programming construct, and present a calculus that captures the core ideas of programming with them. Through examples of runners we show how they capture both the interaction between the program and the external world, and encapsulation of programs in virtual environments that tightly control access to external resources and provide strong guarantees of proper resource finalization.</p>
-<p>We accompanied our work with a prototype programming language Coop (<a href="https://github.com/andrejbauer/coop">https://github.com/andrejbauer/coop</a>) and a Haskell library for runners (<a href="https://github.com/danelahman/haskell-coop">https://github.com/danelahman/haskell-coop</a>).</p>
-
-	 <h4>References:</h4>
-<ul>
-	<li> <a href="https://arxiv.org/abs/1910.11629">https://arxiv.org/abs/1910.11629</a>
-	<li> <a href="https://github.com/andrejbauer/coop">https://github.com/andrejbauer/coop</a>
-        <li> <a href="https://github.com/danelahman/haskell-coop">https://github.com/danelahman/haskell-coop</a>
-</ul>  
-</span>
-</li>
- <li>30 September 2020 (YR-OWLS). <a href="http://www.math.akita-u.ac.jp/~ryoma/">Ryoma Sin'ya</a>, Akita University, "Asymptotic Approximation by Regular Languages". <i>Chair: Koko Muroya</i>
-     <a href="slides/sinya.pdf">(slides)</a> <a href="https://youtu.be/EBvCPX_U3J0">(video)</a> <span class="abstract">
-In this talk we will introduce a new property of formal languages called REG-measurability where REG is the class of regular languages.
-Intuitively, a language L is REG-measurable if there exists an infinite sequence of regular languages that ``converges'' to L.
-A language without REG-measurability has a complex shape in some sense so that it can not be approximated by regular languages.
-<br>
-The motivation, why we have been interested in REG-measurability, originally came from the following conjecture posed by [Dömösi-Horvath-Ito 1991]:
-the set of all primitive words over a non-singleton alphabet is not context-free.
-<br>
-We will describe that several context-free languages are REG-measurable (including languages with transcendental generating function and transcendental density, in particular),
-while a certain simple deterministic context-free language and the set of primitive words are REG-immeasurable in a strong sense.
-We will also discuss some open problems and future work.
-<br>
-This talk is based on the following work: http://www.math.akita-u.ac.jp/~ryoma/misc/measure.pdf
-     </span>
-</li>
-<li>23 September 2020 (OWLS). <a href="http://www.anupamdas.com/wp/">Anupam Das</a>, University of Birmingham, "Cyclic proofs, Peano arithmetic, and Logical complexity". <i>Chair: Jamie Vicary</i> <a href="https://youtu.be/YL3ohTohJrs">(video)</a>
-  <span class="abstract">
-     Cyclic proof theory is an increasingly popular tool for (co)inductive reasoning in algebras, type systems, modal fixed point logics and predicate logics with inductive definitions. Understanding the relative power of cyclicity and induction constitutes one of the key questions traversing these areas.
-     
-    The setting of first-order arithmetic provides us with well understood delineations of proof theoretic expressivity, namely in terms of *logical complexity*, i.e. the number of quantifier alternations required for formulas occurring in a proof. We show that cyclic proofs in arithmetic are strictly more succinct than inductive ones in this sense, refining a recent result that cyclic arithmetic and Peano arithmetic are equivalent [Simpson '17] cf. also [Berardi & Tatsuta '17]. We give a converse result too, thus classifying the proof theoretic strength of cyclic arithmetic theories with restricted logical complexity. The former result is based on structural proof theoretic techniques, namely a form of cut-elimination, while the latter result requires us to adapt recent results on the reverse mathematics of omega-word automaton theory [Kołodziejczyk, Michalewski, Pradic & Skrzypczak '16]  with classical proof theoretic methods.
-     
-    Given the uniformity of our approach, we are able to recover a metamathematical account of our cyclic theories too. As a result we partially resolve an open problem on the logical strength of McNaughton's theorem on determinisation of omega-word automata from [Kołodziejczyk, Michalewski, Pradic & Skrzypczak '16], by reduction to a form of Gödel incompleteness for cyclic theories.
-     
-     This talk is based on the following work: https://arxiv.org/abs/1807.10248.
-     
-     
-     <ul><b>References:</b>
-        <li>
-        [Berardi & Tatsuta '17]  Equivalence of inductive definitions and cyclic proofs under arithmetic. Proceedings of LICS 2017.
-     </li>
-        <li>
-    [Kołodziejczyk, Michalewski, Pradic & Skrzypczak '16] The Logical Strength of Büchi's Decidability Theorem. Proceedings of CSL '16.
-     </li>
-        <li>
-    [Simpson '17] Cyclic Arithmetic Is Equivalent to Peano Arithmetic. Proceedings of FoSSaCS 2017.
-    </li>
-        </ul>
-</li>
-<li>9 September 2020 (OWLS). Filippo Bonchi, Universita di Pisa, "Functorial Semantics: from Lawvere to Carboni-Walters". <i>Chair: Pawel Sobocinski</i> <a href="https://youtu.be/WSX6Y80_CVU">(video)</a>
-    <span class="abstract">
-    Various kinds of relational algebras have been studied since long time. The traditional approach consists in giving an algebraic theory, namely a signature and a set of equations. Unfortunately, the equations often turn out to be incomplete, unless one uses more sophisticated logics (e.g, Horn clauses).
-    In this talk, we advocate the use of a different sort of algebra, where terms are not anymore trees but rather graphs. This has a clear categorical justification that can be clearly expressed by mean of functorial semantics by Lawvere.  We start by gently introducing the Lawvere's approach and then explain its relational extension to Cartesian Bicategories by Carboni and Walters.
-    </span>
-</li>	
-<li>2 September 2020 (OWLS DEBATE), <b>3pm UTC</b>. <i>Panel:</i> <a href="http://brendanfong.com/">Brendan Fong</a>, MIT; <a href="https://www.microsoft.com/en-us/research/people/nicimm/">Nicole Immorlica</a>, Microsoft Research; <a href="http://irif.fr/~kesner">Delia Kesner</a>, Université de Paris (IRIF); <a href="http://cis.upenn.edu/~bcpierce">Benjamin Pierce</a>, University of Pennsylvania; <a href="http://www.cs.tu-dortmund.de/nps/en/Home/Personen/S/Schwentick__Thomas.html">Thomas Schwentick</a>, Technische Universität Dortmund; <a href="http://cs.rice.edu/~vardi">Moshe Vardi</a>, Rice University. "Evolution or Revolution? The Future of Conferences in Theoretical Computer Science". <i>Chair: Jamie Vicary</i> <a href="https://youtu.be/tNcMPdHDXMk">(video)</a>
-<span class=abstract>
-<p>
-The entire community is invited to participate in a debate on the future of the conference system in theoretical computer science. This will provide a rare community-wide opportunity for us to discuss the strengths and weaknesses of our current system, and consider if we can do better. Questions will be asked by members of the audience, and answered by our panel members.
-</p>
-<p>
-The scope of the debate is all aspects of our publishing and community
-traditions, characterised by prestige earned mostly through
-publication in competitive conferences, and frequent local and
-international travel. Possible topics for discussion include the need
-to publish in conferences for career progression, which usually
-involves burning carbon; wasted reviewing effort when good papers are
-rejected from highly competitive conferences; the extent of our
-responsibility as a community to respond to climate change;
-alternative publishing models, like the journal-focussed system used
-in mathematics; high costs of conference travel and registration;
-virtual conference advantages, disadvantages and best practice;
-improving equality, diversity and access; consequences and response to
-COVID-19; and the role of professional bodies. These topics have many
-tight relationships, and need to be discussed together to gain a full
-understanding of the issues involved.
-</p>
-<p><b>Poll responses.</b> Here are the results of the three anonymous polls that were held during the debate.
-	<ol>
-		<li>
-			Until recently, it was common for members of the TCS community to make regular flights. If COVID-19 can be resolved soon with a widely-available vaccine, should we try as a community to:
-			<ul>
-				<li>go back to our usual flight habits (i.e. flying several times per year) <i>(2 responses, 3%)</i></li>
-				<li>continue regular flights, but at a substantially reduced frequency (i.e. flying a couple of times per year) <i>(58 responses, 73%)</i></li>
-				<li>almost completely eliminate flights (i.e. flying a few times per career) <i>(19 responses, 24%)</i></li>
-			</ul>
-		</li>
-		<li>
-			Most researchers in TCS follow the "conference first" model, in which results are published first in a conference (either physical or virtual, and preferably high-status), and later on in a journal in expanded form. As a community, should we aim to:
-			<ul>
-				<li>continue this into the future <i>(43 responses, 32%)</i></li>
-				<li>switch to a "journal first" model more like mathematics, changing the TCS conference system so presentation of a paper does not imply publication in an associated proceedings volume <i>(91 responses, 68%)</i></li>
-			</ul>
-		</li>
-		<li>
-			For the purposes of professional networking and scholarly communication in TCS, virtual conferences can be:
-			<ul>
-				<li>just as effective as physical conferences, or even more effective <i>(28 responses, 20%)</i></li>
-				<li>less effective than physical conferences, but still reasonably effective <i>(67 responses, 47%)</i></li>
-				<li>much less effective than physical conferences <i>(48 responses, 34%)</i></li>
-			</ul>
-		</li>
-	</ol>
-</p>
-<p>
-The following links provide further reading on topics related to the debate:
-<ul>
-<li>Antoine Amarilli, Thomas Colcombet, Hugo Férée and Thomas Schwentick (2020), <a href="https://tcs4f.org">"Pledge for Sustainable Research in Theoretical Computer Science"</a></li>
-<li>Boaz Barak (2016), <a href="https://cacm.acm.org/magazines/2016/6/202644-computer-science-should-stay-young/fulltext">"Computer Science should Stay Young"</a></li>
-<li>Lance Fortnow (2009), <a href="https://cacm.acm.org/magazines/2009/8/34492-viewpoint-time-for-computer-science-to-grow-up/fulltext">"Time for Computer Science to Grow Up"</a></li>
-<li>Benjamin Pierce (2020), <a href="https://cacm.acm.org/magazines/2020/3/243024-conferences-in-an-era-of-expensive-carbon/fulltext">"Conferences in an Era of Expensive
-Carbon"</a></li>
-<li>Moshe Vardi (2020), <a href="https://cacm.acm.org/magazines/2020/1/241717-publish-and-perish/fulltext">"Publish and Perish"</a></li>
-</ul>
-</p>
-</span></li>
-	<li>26 August 2020 (OWLS). <a href="http://www.cs.technion.ac.il/users/orna/">Orna Grumberg</a>, Technion - Israel Institute of Technology , "Automated Program Repair". <i>Chair: Alexandra Silva</i>
-        <a href="slides/grumberg.pdf">(slides)</a> <a href="https://youtu.be/sXU0DONk-4M">(video)</a> <span class=abstract>In the process of software development and maintenance, much efforts are invested in order to
-	ensure that the product is as bug free as possible. Automating the repair process is highly
-	desired.
-	In this talk we present two approaches to automated program repair, based on formal methods.
-	The first approach automatically repairs an erroneous program
-	using a predefined set of mutations to the code (e.g., replacing ‘+’ with ‘-‘ ; ‘&gt;’ with ‘&lt;’, etc.).
-	The repair algorithm goes through generate-validate iterations, which involve fault localization
-	mechanism in order to disregard sets of unsuccessful repairs.
-	The approach guarantees soundness and completeness with respect to a bounded notion of
-	correctness.
-	The second approach intertwines compositional Assume-Guarantee verification with repair.
-	Automata learning is used for compositional verification. If an erroneous behavior is found,
-	abduction assists in repairing the system by inferring new constraints that eliminate erroneous
-	runs. Then, the verification proceeds for the repaired system.
-	This is a joint work with: Hadar Frenkel, Corina Pasareanu, Bat-chen Rothenberg and Sarai
-	Sheinvald. </span></li>
-
-    <li>12 August 2020 (OWLS). <a href="https://www7.in.tum.de/~esparza/">Javier Esparza</a>, Technical University of Munich, "An Efficient Normalisation Procedure for Linear Temporal Logic". <i>Chair: Pawel Sobocinski</i> <a href="https://youtu.be/B2D8euZtbCg">(video)</a><span class="abstract">
-    In the mid 80s, Lichtenstein, Pnueli, and Zuck proved a normal form for
-    formulas of LTL with past operators, which Manna and Pnueli then used as the
-    basis of their famous classification of temporal formulas. Some years later,
-    Chang, Manna, and Pnueli built on this result to derive a similar normal form for
-    the future fragment of LTL. Both normalisation procedures had a non-elementary
-    worst-case blow-up, and followed an involved path from LTL formulas to counter-free
-    automata to star-free regular expressions and back to LTL.<br><br>
-    We improve on both points. We present a purely syntactic normalisation procedure
-    from LTL to LTL, with single exponential blow-up, that can be implemented in a few
-    dozen lines of Standard ML code. As an application, we derive a simple algorithm to
-    translate LTL into deterministic Rabin automata. The algorithm normalises the
-    formula, translates it into a special very weak alternating automaton, and applies a
-    simple determinisation procedure, valid only for these special automata.<br><br>
-    This is joint work with Salomon Sickert that appeared in LICS 2020
-    </span></li>
-<li>5 August 2020 (OWLS-YR). <a href="http://umathur3.web.engr.illinois.edu">Umang Mathur</a>, University of Illinois at Urbana Champaign, "Verification of Uninterpreted and Partially Interpreted Programs". <i>Chair: Krishna. S</i>
-<a href="slides/umang.pdf">(slides)</a> <a href="https://youtu.be/UP5dp1thzj4">(video)</a><span class="abstract">
-Uninterpreted programs are sequential programs with loops and recursion written over a first order vocabulary where the constant, function and predicate symbols used are completely uninterpreted. The input to an uninterpreted program is a first order structure which also determines the semantics of such a programs. The verification question in this setting asks if an uninterpreted a program meets all its assertions on all input structures. In this talk, I will discuss the decidability boundaries for the verification question of uninterpreted programs. In general, the problem is undecidable, but becomes decidable for a sub-class, called coherent uninterpreted programs. The decidability result is tight in that slightly relaxing the coherence criteria leads to undecidability.
-I will then discuss how the decidability result of coherent programs segue into more general classes of programs, called k-coherent programs (k is a natural number). Finally, I will discuss extensions to the verification question for partially interpreted programs, where the vocabulary is associated with an underlying first order theory and the inputs are those first order structures which are also models of this underlying theory.
-</span>
-</li>
-
-<li>29 July 2020 (OWLS). <a href="http://cs.ioc.ee/~tarmo/">Tarmo Uustalu</a>, Reykjavik University, "Interaction laws of monads and comonads". <i>Chair: Jamie Vicary</i> <a href="slides/uustalu.pdf">(slides)</a> <a href="https://youtu.be/PXgxoPGljlI">(video)</a> <span class="abstract">We introduce and study functor-functor and monad-comonad interaction laws as mathematical objects to describe interaction of effectful computations with behaviors of effect-performing machines. Monad-comonad interaction laws are monoid objects of the monoidal category of functor-functor interaction laws. We show that, for suitable generalizations of the concepts of dual and Sweedler dual, the greatest functor resp. monad interacting with a given functor or comonad is its dual while the greatest comonad interacting with a given monad is its Sweedler dual. We relate monad-comonad interaction laws to stateful runners. We show that functor-functor interaction laws are Chu spaces over the category of endofunctors taken with the Day convolution monoidal structure. Hasegawa's glueing endows the category of these Chu spaces with a monoidal structure whose monoid objects are monad-comonad interaction laws.<br><br>This is joint work with Shin-ya Katsumata (NII, Tokyo) and Exequiel Rivas (Inria, Paris).</span></li>
-	
-<li>22 July 2020 (OWLS-YR). <a href="https://justinh.su/">Justin Hsu</a>, University of Wisconsin–Madison, "A separation logic for probabilistic independence". <i>Chair: Koko Muroya</i>
-<a href="slides/hsu.pdf">(slides)</a> <a href="https://youtu.be/TkyOii1VZ5o">(video)</a>
-<span class="abstract">
-Probabilistic independence is a useful concept for describing the result of random sampling---a basic operation in all probabilistic languages---and for reasoning about groups of random variables. Nevertheless, existing verification methods handle independence poorly, if at all. We propose a probabilistic separation logic PSL, where separation models probabilistic independence, based on a new, probabilistic model of the logic of bunched implications (BI). The program logic PSL is capable of verifying information-theoretic security of cryptographic constructions for several well-known tasks, including private information retrieval, oblivious transfer, secure multi-party addition, and simple oblivious RAM, while reasoning purely in terms of independence and uniformity. If time permits, we will also discuss ongoing work for reasoning about conditional independence.
-</span>
-</li>
-
-<li>15 July 2020 (OWLS). <a href="https://www.irif.fr/~tasson/">Christine Tasson</a>, IRIF, Paris, "Towards a model of mixed linear and non-linear substitution." <i>Chair: Alexandra Silva</i>
-    <a href="slides/tasson.pdf">(slides)</a> <a href="https://youtu.be/D-4Rfj0Ya10">(video)</a>
-<span class="abstract">
-    A functional program is said to be linear when it uses exactly once its
-input. Linearity is useful to handle memory safely, single-use channels
-in concurrency, or quantum resources. Yet, we do not want all inputs to
-be linear and some of them can be used several times safely. Hence the
-need to understand what is a model of linear-non-linear substitution.
-Such settings appear naturally in differential lambda-calculus which is
-our initial motivation.
-
-We move from the usual categorical axiomatization of linear logic and
-lambda-calculus to the multicategorical axiomatisation, using
-profunctors and 2 monads to give account to linear and non-linear
-contexts. We present how to combine the linear and the non-linear 2
-monads in order to model the linear-non-linear substitution.
-
-This is joint work with Martin Hyland.
-</span>
-</li>
-
-<li>1 July 2020 (OWLS-YR). <a href="https://perso.ens-lyon.fr/amina.doumane/">Amina Doumane</a>, CNRS, ENS de Lyon, "(Non)axiomatizability of positive relation algebras via graph homomorphisms". <i>Chair: Charles Grellois</i> <a href="slides/doumane.pdf">(slides)</a> <a href="https://youtu.be/Ji5ikGQPuUI">(video)</a>
-<span class="abstract">We study the equational theories of composition and intersection on binary relations, with or without their associated neutral elements (identity and full relation). Without these constants, the equational theory coincides with that of semilattice-ordered semigroups. We show that the equational theory is no longer finitely based when adding one or the other constant—contradicting a conjecture from the litterature. Our proofs exploit a characterisation in terms of graphs and graph homomorphisms, which we show how to adapt in order to capture standard equational theories over the considered signatures.</span></li>
-	
-
-<li>24 June 2020 (OWLS). <a href="https://sites.google.com/site/valeriavignudelli/">Valeria Vignudelli</a>, ENS Lyon, "Monads and Quantitative Equational Theories for Nondeterminism and Probability". <i>Chair: Pawel Sobocinski</i> <a href="https://youtu.be/UygWCaGha1A">(video)</a> <span class="abstract">The monad of convex sets of probability distributions is a well-known tool for modelling the combination of nondeterministic and probabilistic computational effects. In this talk I will discuss theories allowing us to reason equationally about this monad, and applications to program verification. 
-In order to reason about distances between programs combining nondeterminism and probabilities, the monad of convex sets of distributions can be lifted from the category of sets to the category of metric spaces. Using the framework of quantitative algebras, recently introduced by Mardare, Panangaden, and Plotkin, we derive an equational presentation of this monad on metric spaces.
-The main results I will present in this talk are based on collaborations with Filippo Bonchi, Matteo Mio, and Ana Sokolova.</span></li>	
-	
-<li>17 June 2020 (OWLS-YR). <a href="http://www.lsv.fr/~fortin/">Marie Fortin</a>, University of Liverpool, "FO =  FO3 for Linear Orders with Monotone Binary Relations" <i>Chair: Nathanaël Fijalkow</i>
-<a href="slides/fortin.pdf">(slides)</a> <span class="abstract">
-It is well-known that linear orders have the 3-variable property, meaning that over linear orders, every monadic first-order formula with up to 3 free variables is equivalent to one that uses at most 3 variables in total. Over the years, this has been extended to richer classes of structures, such as real-time signals with the +1 relation, Mazurkiewicz traces, or message sequence charts. In this talk, I will present a unifying proof that generalizes those facts. It is based on star-free PDL, a variant of propositional dynamic logic that captures precisely the 3-variable fragment of first-order logic. More precisely, I will show that over structures consisting of one linear order and arbitrarily many binary relations satisfying some monotonicity conditions, star-free PDL has the same expressive power as full first-order logic. This implies that any class of such structures has the 3-variable property.
-</span></li>
-
-<li>10 June 2020 (OWLS). Seminar cancelled in support of <a href="https://www.shutdownstem.com/">Black Lives Matter</a>.</li>
-
-<li>3 June 2020 (OWLS-YR). <a href="https://warwick.ac.uk/fac/sci/dcs/people/dmitry_chistikov/">Dmitry Chistikov</a>, University of Warwick, "Parikh's theorem from the complexity viewpoint".  <i>Chair: Krishna S.</i> <a href="https://youtu.be/G6SkFTML66I">(video)</a>
-<a href="slides/chistikov.pdf">(slides)</a> <span class="abstract">
-Parikh's theorem (1961) connects two basic concepts in computer science,
-recursion and iteration. It states that commutative images of context-free
-and regular languages form the same family --- namely semilinear sets, or
-sets definable in Presburger arithmetic (the first-order logic of addition
-and order). This theorem has become a standard tool in the theory of
-verification, with many different proofs and extensions.
-<br>
-In this talk, we will recall Parikh's theorem and look at it from the
-complexity viewpoint. Transformation from pushdown automata into finite
-automata incurs a description blowup, but how big does it need to be?
-We will look at context-free languages in general and at their subclass,
-one-counter languages, focusing in particular on lower bounds (hardness).
-</span></li>
+				In this talk I will focus on examples, and share the intuition that I have developed from my results. All the examples in this talk will be based on the Boom hierarchy, a hierarchy of data structures which lends itself perfectly for the study of monad compositions. Based on which monads in this hierarchy do and do not compose with each other via a distributive law, I will make predictions about the behaviour of monad compositions in general.
+			</p>
+		</span>
+	</li>
 
 
-<li>27 May 2020 (OWLS). <a href="http://www.cs.cornell.edu/~kozen/">Dexter Kozen</a>, Cornell University, "Brzozowski derivatives as distributive laws". <i>Chair: Alexandra Silva</i> <a href="slides/kozen.pdf">(slides)</a> <a href="https://youtu.be/tlNR7YRN3v4">(video)</a></li>
+	<li>25 November 2020 (YR-OWLS). <a href="https://sites.google.com/view/francescogavazzo/home">Francesco Gavazzo</a>, University of Bologna, "Modal Reasoning = Metric Reasoning, via Lawvere". <i>Chair: Charles Grellois</i> <a href="slides/gavazzo.pdf">(slides)</a>
+		<span class="abstract">
+			<p>Mainstream formal analyses of software systems focus on extensional properties of program behaviour. Such properties ultimately deal with the input/output semantics of programs, this way giving information on what programs compute. There are several situations, however, where intensional properties of programs turn out to be crucial to ensure the correct behaviour of software systems. In these scenarios, one needs not only to know what output a program computes, but also how the program computes it. Typical examples of intensional aspects of computations include efficiency, resource usage, robustness with respect to errors, and privacy and security.</p>
+			<p>In the last decades, these properties have been studied in isolation by means of type systems, denotational semantics, and operational techniques. More recently, uniform accounts of a large family of intensional aspects of computations (oftentimes referred to as coeffectful computations) have been proposed in terms of graded modal types and graded (co)monads.</p>
+			<p>In this talk, I will present a general framework for studying operationally-based notions of program equivalence for languages with graded modal types. These notions of equivalence identify programs with the same intensional behaviour and thus allow for the intensional analysis of programs. The framework will be instantiated to study the intensional refinement of Abramsky's applicative bisimilarity (a coinductively-defined notion of equivalence for higher-order sequential languages) giving an abstract compositionality theorem generalising well-known results on intensional program behaviour such as Abadi's et al. Non-interference, Pfenning's Proof Irrelevance, and Reed and Pierce's Metric Preservation.</p>
+			<p>Finally, a formal connection between the theory of intensional program equivalence and the theory of abstract program distance built on top of Lawvere's analysis of generalised metric spaces will be established, this way allowing for the transfer of results and techniques developed in the context of program metric to the realm of intensional analyses of languages with modal types.</p>
+		</span>	
+	</li>
 
-<li>13 May 2020 (OWLS). <a href="https://www.mimuw.edu.pl/~klin/">Bartek Klin</a>, Warsaw University, "Monadic monadic second order logic". <i>Chair: Jamie Vicary</i> <a href="slides/klin.pdf">(slides)</a> <a href="https://youtu.be/gcQB2GtxsmE">(video)</a> <span class="abstract">Monadic second order logic (MSO) is usually studied over specific kinds of structures, be it finite words, infinite words, finite or infinite trees, total orders of various shapes, etc. A monad is a notion of "a kind of structures" that covers these and many other examples. One can formulate an abstract definition of MSO for a generic monad. I will explain how this is done, and I will describe some conditions that a monad should satisfy to ensure a basic "sanity check": that every definable language is recognized by a finite algebra. (joint work with Mikołaj Bojańczyk and Julian Salamanca)</span></li>
+	<li>18 November 2020 (OWLS). <a herf="https://people.mpi-sws.org/~joel/">Joël Ouaknine</a>, Max Planck Institute for Software Systems, "Holonomic Techniques, Periods, and Decision Problems". <i>Chair: Pawel Sobocinski</i>
+		<span class="abstract">
+			<p>Holonomic techniques have deep roots going back to Wallis, Euler, and Gauss, and have evolved in modern times as an important subfield of computer algebra, thanks in large part to the work of Zeilberger and others over the past three decades. In this talk, I will give an overview of the area, and in particular will present a select survey of known and original results on decision problems for holonomic sequences and functions. I will also discuss some surprising connections to the theory of periods and exponential periods, which are classical objects of study in algebraic geometry and number theory; in particular, I will relate the decidability of certain decision problems for holonomic sequences to deep conjectures about periods and exponential periods, notably those due to Kontsevich and Zagier.</p>
+			<p>Parts of this talk will be based on the paper "On Positivity and Minimality for Second-Order Holonomic Sequences", <a href="https://arxiv.org/abs/2007.12282">https://arxiv.org/abs/2007.12282</a>.</p>
+		</span>
+	</li>    
 
-<li>29 April 2020 (OWLS). <a href="https://www.irif.fr/~petrisan/">Daniela Petrisan</a>, University of Paris, "Combining probabilistic and non-deterministic choice via weak distributive laws" <a href="https://www.youtube.com/watch?v=nZLXeVNljy0&t=5s">(video)</a>. <i>Chair: Pawel Sobocinski</i></li>
+	<li>11 November 2020 (YR-OWLS). Abhisekh Sankaran, University of Cambridge, "Extension preservation in the finite and prefix classes of first order logic". <i>Chair : Koko Muroya</i> <a href="slides/sankaran.pdf">(slides)</a>
+			<span class="abstract">
+				<p>It is well known that the classic Łoś-Tarski preservation theorem fails in the finite: there are first-order definable classes of finite structures closed under extensions which are not definable (in the finite) in the existential fragment of first-order logic. We strengthen this by constructing for every n, first-order definable classes of finite structures closed under extensions which are not definable with n quantifier alternations. The classes we construct are definable in the extension of Datalog with negation and indeed in the existential fragment of transitive-closure logic. This answers negatively an open question posed by Rosen and Weinstein.
+				</p>
+			</span>
+	</li>
 
-<li>15 April 2020 (OWLS). <a href="https://www-i2.informatik.rwth-aachen.de/~katoen/">Joost-Pieter Katoen</a>, RWTH Aachen University, "Termination of probabilistic programs". <i>Chair: Alexandra Silva</i> <a href="slides/katoen.pdf">(slides)</a> <a href="https://www.youtube.com/watch?v=25uuBNISTY8">(video)</a> <span class="abstract"><p>Program termination is a key question in program verification. This talk considers the termination of probabilistic programs, programs that can describe randomised algorithms and more recently received attention in machine learning. Probabilistic termination has several nuances and has some unexpected effects. Programs may diverge with zero probability; they almost-surely terminate (AST). Two AST-programs run in sequence may have an infinite expected run-time, though each of its constituents has a finite expected run-time.</p>
-<p>
-This talk will demystify the notions of probabilistic termination, its surprising effects, and its hardness ("degree of undecidability"). We will show a simple proof rule for deciding AST.</p>
-</span></li>
-<li>1 April 2020 (OWLS). <a href="https://www.imperial.ac.uk/people/k.buzzard">Kevin Buzzard</a>, Imperial College London, "Is HoTT the way to do mathematics?". <i>Chair: Jamie Vicary</i> <a href="slides/buzzard.pdf" target="_blank">(slides)</a> <a href="https://www.youtube.com/watch?v=q5-pykbfViA">(video)</a> <span class="abstract"><p>Homotopy type theory (HoTT) is a foundation for mathematics. Its origins are in work of Awodey, Warren and independently Voevodsky, an algebraic geometer who then changed area and proposed a new definition of equality between mathematical objects. Voevodsky was initially motivated by a desire to formally verify his own work on a computer. However after his unfortunate death in 2017 it was still not the case that any serious algebraic geometry recognisable to a classical algebraic geometer had been formalised in a HoTT computer system. Even in 2020 Grothendieck's original definition of a scheme (the fundamental building block of modern algebraic geometry) has only been formalised in Lean's Dependent Type Theory (DTT), and not in any HoTT system.</p>
+	<li>4 November 2020 (OWLS). <a href="https://www.cs.huji.ac.il/~ornak/">Orna Kupferman</a>, Hebrew University,  Examining Classical Graph-Theory Problems from the Viewpoint of Formal-Verification Methods. <i>Chair: Alexandra Silva</i> <a href="slides/kupferman.ppt">(slides)</a>
+				<span class="abstract">
+					<p>The talk surveys a series of works that lift the rich semantics and structure of graphs, and the experience of the formal-verification community in reasoning about them, to classical graph-theoretical problems.
+					</p>
+				</span>
+	</li>
 
-<p>In my talk, I will start by explaining Voevodsky's univalence axiom, the problems it solves and the problems it causes. I will then explain a basic mathematical question for which Voevodsky's axiom seems in theory like it might be helpful. I will finally talk about work of Ramon Fernandez Mir on formalising Grothendieck's original definition of a scheme in Lean's DTT system (without Voevodsky's axiom). Whether or not this can be done in a HoTT system is apparently an open problem, but one which is easily attackable, and I will finish by explaining my plan for attacking it.</p></span></li>
-</ul>
+	<li>28 October 2020 (YR-OWLS). <a href="https://sjunges.github.io/sebastian-junges/">Sebastian Junges</a>, UC Berkeley, "Finding Memoryless Policies in Partially Observable MDPs is 'Existential Theory of the Reals'-complete". <i>Chair: Nathanaël Fijalkow</i> <a href="slides/junges.pdf">(slides)</a>
+				<span class="abstract">
+					<p>Partially observable Markov Decision Processes  (POMDPs) are a prime model in sequential decision making.
+						They are heavily studied in operations research, artificial intelligence and verification, to name a few.
+						For POMDPs,  a good policy reaches the target with probability at some threshold,
+						and makes its decisions solely based on the previously made observations.
+						Deciding whether a good policy exists is undecidable.
+						One of the methods to solve instances of this reachability problem is to restrict the memory that the strategy may use.
+						This approach is commonly taking, e.g., in reinforcement learning for POMDPs.
+						In the first part of the talk, we consider memoryless strategies in POMDPs.
+					and show that this problem is as hard as the feasibility problem in parametric Markov Chain (pMC) analysis.</p>
+					<p>
+						In the second part of the talk, we consider this feasibility problem for pMCs.
+						Roughly, a pMC is a Markov chain with symbolic transitions. The feasibility problem asks:
+						Do values for the symbols exist such that in the induced parameter-free Markov chain, a target state is reached with probability at least a half.
+						We discuss the complexity landscape for variants of this decision problem.
+						In particular, we establish that feasibility in pMCs is complete for the complexity class "existential theory of the reals” (ETR).
+						Another example of an ETR-complete problem is  deciding whether a multivariate polynomial has a real root.
+						Together with the results of the first half of the talk,
+					this establishes that deciding whether there exists a good memoryless policy in a POMDP is ETR-complete.</p>
+				</span>
+	</li>
+
+				<li>21 October 2020 (OWLS). <a href="https://www.fi.muni.cz/usr/kucera/">Antonin Kucera</a>, Masaryk University, "Efficient analysis of VASS termination complexity". <i>Chair: Pawel Sobocinski</i> <a href="https://youtu.be/D0QaX4DT_UY">(video)</a></li>
+				<li>14 October 2020 (YR-OWLS). <a href="https://liacs.leidenuniv.nl/~basoldh/">Henning Basold</a>, Universteit Leiden, "Coalgebraic Communication Protocols and Session Types". <i>Chair: Koko Muroya</i> <a href="https://youtu.be/kpgDXfgjMOs">(video)</a></li>
+				<span class="abstract">
+					<p>This is joint work with Alex Keizer and Jorge A. Pérez.</p>
+
+					<p>Compositional methods are central to the development and verification
+						of software systems. They allow to break down large systems into
+						smaller components, while enabling reasoning about the behaviour of the
+						composed system. For concurrent and communicating systems, compositional
+						techniques based on *behavioural type systems* have received much
+						attention. By abstracting communication protocols as types, these type
+						systems can statically check that programs interact with channels
+						according to a certain protocol, whether the intended messages are
+						exchanged in a certain order. For this talk, we will put on our
+						coalgebraic spectacles to investigate *session types*, a widely studied
+						class of behavioral type systems. We will seek a syntax-free
+						description of session-based concurrency as states of coalgebras. The
+						result will be a description of type equivalence, duality, and subtyping
+						relations in terms of canonical coinductive presentations. In turn,
+						this coinductive presentation makes it possible to elegantly derive a
+						decidable type system with subtyping for π-calculus processes, in which
+						the states of a coalgebra will serve as channel protocols. Going full
+						circle, we will also exhibit a coalgebra structure on an existing
+						session type system, and show that the relations and type system
+					resulting from our coalgebraic perspective agree with the existing ones.</p>
+				</span>
+
+				<li>7 October 2020 (OWLS). <a href="http://www.andrej.com">Andrej Bauer</a>, University of Ljubljana, "Effects in the real world". <i>Chair: Pawel Sobocinski</i> <a href="https://youtu.be/1mJhiV-yGj4">(video)</a>
+					<span class="abstract">
+						<p>Joint work with <a href="https://danel.ahman.ee">Danel Ahman</a>, University of Ljubljana.</p>
+
+						<p>In modern languages, computational effects are often structured using monads or algebraic effects and handlers. These mechanisms excel at implementation of computational effects within the language itself. For instance, the familiar implementation of mutable state in terms of state-passing functions requires no native state, and can be implemented either as a monad or using handlers. One is naturally drawn to using these techniques also for dealing with actual effects, such as manipulation of native memory and access to hardware. These are represented inside the language as algebraic operations or a monad, but treated specially by the language's top-level runtime, which invokes corresponding operating system functionality. While this approach works in practice, one wishes that the ingenuity of the language implementors were better supported by a more flexible methodology with a sound theoretical footing.</p>
+						<p>We address the issue by showing how to design a programming language based on runners of algebraic effects. We review runners, recast them as a programming construct, and present a calculus that captures the core ideas of programming with them. Through examples of runners we show how they capture both the interaction between the program and the external world, and encapsulation of programs in virtual environments that tightly control access to external resources and provide strong guarantees of proper resource finalization.</p>
+						<p>We accompanied our work with a prototype programming language Coop (<a href="https://github.com/andrejbauer/coop">https://github.com/andrejbauer/coop</a>) and a Haskell library for runners (<a href="https://github.com/danelahman/haskell-coop">https://github.com/danelahman/haskell-coop</a>).</p>
+
+						<h4>References:</h4>
+						<ul>
+							<li> <a href="https://arxiv.org/abs/1910.11629">https://arxiv.org/abs/1910.11629</a>
+								<li> <a href="https://github.com/andrejbauer/coop">https://github.com/andrejbauer/coop</a>
+									<li> <a href="https://github.com/danelahman/haskell-coop">https://github.com/danelahman/haskell-coop</a>
+									</ul>  
+								</span>
+							</li>
+							<li>30 September 2020 (YR-OWLS). <a href="http://www.math.akita-u.ac.jp/~ryoma/">Ryoma Sin'ya</a>, Akita University, "Asymptotic Approximation by Regular Languages". <i>Chair: Koko Muroya</i>
+								<a href="slides/sinya.pdf">(slides)</a> <a href="https://youtu.be/EBvCPX_U3J0">(video)</a> <span class="abstract">
+									In this talk we will introduce a new property of formal languages called REG-measurability where REG is the class of regular languages.
+									Intuitively, a language L is REG-measurable if there exists an infinite sequence of regular languages that ``converges'' to L.
+									A language without REG-measurability has a complex shape in some sense so that it can not be approximated by regular languages.
+									<br>
+									The motivation, why we have been interested in REG-measurability, originally came from the following conjecture posed by [Dömösi-Horvath-Ito 1991]:
+									the set of all primitive words over a non-singleton alphabet is not context-free.
+									<br>
+									We will describe that several context-free languages are REG-measurable (including languages with transcendental generating function and transcendental density, in particular),
+									while a certain simple deterministic context-free language and the set of primitive words are REG-immeasurable in a strong sense.
+									We will also discuss some open problems and future work.
+									<br>
+									This talk is based on the following work: http://www.math.akita-u.ac.jp/~ryoma/misc/measure.pdf
+								</span>
+							</li>
+							<li>23 September 2020 (OWLS). <a href="http://www.anupamdas.com/wp/">Anupam Das</a>, University of Birmingham, "Cyclic proofs, Peano arithmetic, and Logical complexity". <i>Chair: Jamie Vicary</i> <a href="https://youtu.be/YL3ohTohJrs">(video)</a>
+								<span class="abstract">
+									Cyclic proof theory is an increasingly popular tool for (co)inductive reasoning in algebras, type systems, modal fixed point logics and predicate logics with inductive definitions. Understanding the relative power of cyclicity and induction constitutes one of the key questions traversing these areas.
+
+									The setting of first-order arithmetic provides us with well understood delineations of proof theoretic expressivity, namely in terms of *logical complexity*, i.e. the number of quantifier alternations required for formulas occurring in a proof. We show that cyclic proofs in arithmetic are strictly more succinct than inductive ones in this sense, refining a recent result that cyclic arithmetic and Peano arithmetic are equivalent [Simpson '17] cf. also [Berardi & Tatsuta '17]. We give a converse result too, thus classifying the proof theoretic strength of cyclic arithmetic theories with restricted logical complexity. The former result is based on structural proof theoretic techniques, namely a form of cut-elimination, while the latter result requires us to adapt recent results on the reverse mathematics of omega-word automaton theory [Kołodziejczyk, Michalewski, Pradic & Skrzypczak '16]  with classical proof theoretic methods.
+
+									Given the uniformity of our approach, we are able to recover a metamathematical account of our cyclic theories too. As a result we partially resolve an open problem on the logical strength of McNaughton's theorem on determinisation of omega-word automata from [Kołodziejczyk, Michalewski, Pradic & Skrzypczak '16], by reduction to a form of Gödel incompleteness for cyclic theories.
+
+									This talk is based on the following work: https://arxiv.org/abs/1807.10248.
 
 
-     <h2 id="partinfo">Information for participants</h2>
+									<ul><b>References:</b>
+										<li>
+											[Berardi & Tatsuta '17]  Equivalence of inductive definitions and cyclic proofs under arithmetic. Proceedings of LICS 2017.
+										</li>
+										<li>
+											[Kołodziejczyk, Michalewski, Pradic & Skrzypczak '16] The Logical Strength of Büchi's Decidability Theorem. Proceedings of CSL '16.
+										</li>
+										<li>
+											[Simpson '17] Cyclic Arithmetic Is Equivalent to Peano Arithmetic. Proceedings of FoSSaCS 2017.
+										</li>
+									</ul>
+								</li>
+								<li>9 September 2020 (OWLS). Filippo Bonchi, Universita di Pisa, "Functorial Semantics: from Lawvere to Carboni-Walters". <i>Chair: Pawel Sobocinski</i> <a href="https://youtu.be/WSX6Y80_CVU">(video)</a>
+									<span class="abstract">
+										Various kinds of relational algebras have been studied since long time. The traditional approach consists in giving an algebraic theory, namely a signature and a set of equations. Unfortunately, the equations often turn out to be incomplete, unless one uses more sophisticated logics (e.g, Horn clauses).
+										In this talk, we advocate the use of a different sort of algebra, where terms are not anymore trees but rather graphs. This has a clear categorical justification that can be clearly expressed by mean of functorial semantics by Lawvere.  We start by gently introducing the Lawvere's approach and then explain its relational extension to Cartesian Bicategories by Carboni and Walters.
+									</span>
+								</li>	
+								<li>2 September 2020 (OWLS DEBATE), <b>3pm UTC</b>. <i>Panel:</i> <a href="http://brendanfong.com/">Brendan Fong</a>, MIT; <a href="https://www.microsoft.com/en-us/research/people/nicimm/">Nicole Immorlica</a>, Microsoft Research; <a href="http://irif.fr/~kesner">Delia Kesner</a>, Université de Paris (IRIF); <a href="http://cis.upenn.edu/~bcpierce">Benjamin Pierce</a>, University of Pennsylvania; <a href="http://www.cs.tu-dortmund.de/nps/en/Home/Personen/S/Schwentick__Thomas.html">Thomas Schwentick</a>, Technische Universität Dortmund; <a href="http://cs.rice.edu/~vardi">Moshe Vardi</a>, Rice University. "Evolution or Revolution? The Future of Conferences in Theoretical Computer Science". <i>Chair: Jamie Vicary</i> <a href="https://youtu.be/tNcMPdHDXMk">(video)</a>
+									<span class=abstract>
+										<p>
+											The entire community is invited to participate in a debate on the future of the conference system in theoretical computer science. This will provide a rare community-wide opportunity for us to discuss the strengths and weaknesses of our current system, and consider if we can do better. Questions will be asked by members of the audience, and answered by our panel members.
+										</p>
+										<p>
+											The scope of the debate is all aspects of our publishing and community
+											traditions, characterised by prestige earned mostly through
+											publication in competitive conferences, and frequent local and
+											international travel. Possible topics for discussion include the need
+											to publish in conferences for career progression, which usually
+											involves burning carbon; wasted reviewing effort when good papers are
+											rejected from highly competitive conferences; the extent of our
+											responsibility as a community to respond to climate change;
+											alternative publishing models, like the journal-focussed system used
+											in mathematics; high costs of conference travel and registration;
+											virtual conference advantages, disadvantages and best practice;
+											improving equality, diversity and access; consequences and response to
+											COVID-19; and the role of professional bodies. These topics have many
+											tight relationships, and need to be discussed together to gain a full
+											understanding of the issues involved.
+										</p>
+										<p><b>Poll responses.</b> Here are the results of the three anonymous polls that were held during the debate.
+											<ol>
+												<li>
+													Until recently, it was common for members of the TCS community to make regular flights. If COVID-19 can be resolved soon with a widely-available vaccine, should we try as a community to:
+													<ul>
+														<li>go back to our usual flight habits (i.e. flying several times per year) <i>(2 responses, 3%)</i></li>
+														<li>continue regular flights, but at a substantially reduced frequency (i.e. flying a couple of times per year) <i>(58 responses, 73%)</i></li>
+														<li>almost completely eliminate flights (i.e. flying a few times per career) <i>(19 responses, 24%)</i></li>
+													</ul>
+												</li>
+												<li>
+													Most researchers in TCS follow the "conference first" model, in which results are published first in a conference (either physical or virtual, and preferably high-status), and later on in a journal in expanded form. As a community, should we aim to:
+													<ul>
+														<li>continue this into the future <i>(43 responses, 32%)</i></li>
+														<li>switch to a "journal first" model more like mathematics, changing the TCS conference system so presentation of a paper does not imply publication in an associated proceedings volume <i>(91 responses, 68%)</i></li>
+													</ul>
+												</li>
+												<li>
+													For the purposes of professional networking and scholarly communication in TCS, virtual conferences can be:
+													<ul>
+														<li>just as effective as physical conferences, or even more effective <i>(28 responses, 20%)</i></li>
+														<li>less effective than physical conferences, but still reasonably effective <i>(67 responses, 47%)</i></li>
+														<li>much less effective than physical conferences <i>(48 responses, 34%)</i></li>
+													</ul>
+												</li>
+											</ol>
+										</p>
+										<p>
+											The following links provide further reading on topics related to the debate:
+											<ul>
+												<li>Antoine Amarilli, Thomas Colcombet, Hugo Férée and Thomas Schwentick (2020), <a href="https://tcs4f.org">"Pledge for Sustainable Research in Theoretical Computer Science"</a></li>
+												<li>Boaz Barak (2016), <a href="https://cacm.acm.org/magazines/2016/6/202644-computer-science-should-stay-young/fulltext">"Computer Science should Stay Young"</a></li>
+												<li>Lance Fortnow (2009), <a href="https://cacm.acm.org/magazines/2009/8/34492-viewpoint-time-for-computer-science-to-grow-up/fulltext">"Time for Computer Science to Grow Up"</a></li>
+												<li>Benjamin Pierce (2020), <a href="https://cacm.acm.org/magazines/2020/3/243024-conferences-in-an-era-of-expensive-carbon/fulltext">"Conferences in an Era of Expensive
+												Carbon"</a></li>
+												<li>Moshe Vardi (2020), <a href="https://cacm.acm.org/magazines/2020/1/241717-publish-and-perish/fulltext">"Publish and Perish"</a></li>
+											</ul>
+										</p>
+									</span></li>
+									<li>26 August 2020 (OWLS). <a href="http://www.cs.technion.ac.il/users/orna/">Orna Grumberg</a>, Technion - Israel Institute of Technology , "Automated Program Repair". <i>Chair: Alexandra Silva</i>
+										<a href="slides/grumberg.pdf">(slides)</a> <a href="https://youtu.be/sXU0DONk-4M">(video)</a> <span class=abstract>In the process of software development and maintenance, much efforts are invested in order to
+											ensure that the product is as bug free as possible. Automating the repair process is highly
+											desired.
+											In this talk we present two approaches to automated program repair, based on formal methods.
+											The first approach automatically repairs an erroneous program
+											using a predefined set of mutations to the code (e.g., replacing ‘+’ with ‘-‘ ; ‘&gt;’ with ‘&lt;’, etc.).
+											The repair algorithm goes through generate-validate iterations, which involve fault localization
+											mechanism in order to disregard sets of unsuccessful repairs.
+											The approach guarantees soundness and completeness with respect to a bounded notion of
+											correctness.
+											The second approach intertwines compositional Assume-Guarantee verification with repair.
+											Automata learning is used for compositional verification. If an erroneous behavior is found,
+											abduction assists in repairing the system by inferring new constraints that eliminate erroneous
+											runs. Then, the verification proceeds for the repaired system.
+											This is a joint work with: Hadar Frenkel, Corina Pasareanu, Bat-chen Rothenberg and Sarai
+										Sheinvald. </span></li>
 
-     <p><i>Joining the seminar.</i> To join any OWLS seminar, visit the following link, up to 15 minutes before the posted start time:</p>
-     <ul><li><a href="https://us02web.zoom.us/j/177472153?pwd=MFgwd0EzY05QSGtpSDc2dU16aG9wdz09">https://us02web.zoom.us/j/177472153?pwd=MFgwd0EzY05QSGtpSDc2dU16aG9wdz09</a></li></ul>
-     <p>You will be given the option to join through your web browser, or to launch the <i>Zoom</i> client if it is installed on your device <a href="#technology">(see below)</a>. For the best experience, we recommend using the client. When prompted for your name, please enter your real name, so that social interactions during the seminar and coffee breaks can be more natural.</p>
+										<li>12 August 2020 (OWLS). <a href="https://www7.in.tum.de/~esparza/">Javier Esparza</a>, Technical University of Munich, "An Efficient Normalisation Procedure for Linear Temporal Logic". <i>Chair: Pawel Sobocinski</i> <a href="https://youtu.be/B2D8euZtbCg">(video)</a><span class="abstract">
+											In the mid 80s, Lichtenstein, Pnueli, and Zuck proved a normal form for
+											formulas of LTL with past operators, which Manna and Pnueli then used as the
+											basis of their famous classification of temporal formulas. Some years later,
+											Chang, Manna, and Pnueli built on this result to derive a similar normal form for
+											the future fragment of LTL. Both normalisation procedures had a non-elementary
+											worst-case blow-up, and followed an involved path from LTL formulas to counter-free
+											automata to star-free regular expressions and back to LTL.<br><br>
+											We improve on both points. We present a purely syntactic normalisation procedure
+											from LTL to LTL, with single exponential blow-up, that can be implemented in a few
+											dozen lines of Standard ML code. As an application, we derive a simple algorithm to
+											translate LTL into deterministic Rabin automata. The algorithm normalises the
+											formula, translates it into a special very weak alternating automaton, and applies a
+											simple determinisation procedure, valid only for these special automata.<br><br>
+											This is joint work with Salomon Sickert that appeared in LICS 2020
+										</span></li>
+										<li>5 August 2020 (OWLS-YR). <a href="http://umathur3.web.engr.illinois.edu">Umang Mathur</a>, University of Illinois at Urbana Champaign, "Verification of Uninterpreted and Partially Interpreted Programs". <i>Chair: Krishna. S</i>
+											<a href="slides/umang.pdf">(slides)</a> <a href="https://youtu.be/UP5dp1thzj4">(video)</a><span class="abstract">
+												Uninterpreted programs are sequential programs with loops and recursion written over a first order vocabulary where the constant, function and predicate symbols used are completely uninterpreted. The input to an uninterpreted program is a first order structure which also determines the semantics of such a programs. The verification question in this setting asks if an uninterpreted a program meets all its assertions on all input structures. In this talk, I will discuss the decidability boundaries for the verification question of uninterpreted programs. In general, the problem is undecidable, but becomes decidable for a sub-class, called coherent uninterpreted programs. The decidability result is tight in that slightly relaxing the coherence criteria leads to undecidability.
+												I will then discuss how the decidability result of coherent programs segue into more general classes of programs, called k-coherent programs (k is a natural number). Finally, I will discuss extensions to the verification question for partially interpreted programs, where the vocabulary is associated with an underlying first order theory and the inputs are those first order structures which are also models of this underlying theory.
+											</span>
+										</li>
 
-     <p><i>Audio and video.</i> We encourage all participants to enable their audio and video at all times (click "Use Device Audio" in the <i>Zoom</i> interface.) Don't worry about making noise and disrupting the proceedings accidentally; the Chairperson will ensure your audio is muted by default during the seminar. Having your audio and video enabled will allow other participants to see your face in the "Gallery" view, letting them know that you're taking part. It also gives you the option of asking a question, and of making best use of the "coffee break" sessions. For most users with good network access (such as a fast home broadband connection), there is no need to worry that having your audio and video enabled will degrade the experience; the technology platform ensures that the speaker's audio/video stream is prioritised at all times. However, those on slow connections may find it better to disable their audio and video.</p>
+										<li>29 July 2020 (OWLS). <a href="http://cs.ioc.ee/~tarmo/">Tarmo Uustalu</a>, Reykjavik University, "Interaction laws of monads and comonads". <i>Chair: Jamie Vicary</i> <a href="slides/uustalu.pdf">(slides)</a> <a href="https://youtu.be/PXgxoPGljlI">(video)</a> <span class="abstract">We introduce and study functor-functor and monad-comonad interaction laws as mathematical objects to describe interaction of effectful computations with behaviors of effect-performing machines. Monad-comonad interaction laws are monoid objects of the monoidal category of functor-functor interaction laws. We show that, for suitable generalizations of the concepts of dual and Sweedler dual, the greatest functor resp. monad interacting with a given functor or comonad is its dual while the greatest comonad interacting with a given monad is its Sweedler dual. We relate monad-comonad interaction laws to stateful runners. We show that functor-functor interaction laws are Chu spaces over the category of endofunctors taken with the Day convolution monoidal structure. Hasegawa's glueing endows the category of these Chu spaces with a monoidal structure whose monoid objects are monad-comonad interaction laws.<br><br>This is joint work with Shin-ya Katsumata (NII, Tokyo) and Exequiel Rivas (Inria, Paris).</span></li>
 
-     <p id="coffeebreaks"><i>Coffee breaks.</i> Every OWLS seminar has two "coffee breaks", one starting 15 minutes before the posted start time of the seminar, and the second starting after the seminar is finished. To participate in these, feel free to join the meeting early, or to keep the meeting window open after the end of the talk. During these coffee break periods, participants will be automatically gathered into small groups, assigned at random; please introduce yourself to the other members of your group, and chat just like you would at a real conference. Remember to bring your own coffee! If you're not interested in chatting, please close the meeting window during the coffee break periods, so that people who want to chat are not grouped with those who do not.</p>
+										<li>22 July 2020 (OWLS-YR). <a href="https://justinh.su/">Justin Hsu</a>, University of Wisconsin–Madison, "A separation logic for probabilistic independence". <i>Chair: Koko Muroya</i>
+											<a href="slides/hsu.pdf">(slides)</a> <a href="https://youtu.be/TkyOii1VZ5o">(video)</a>
+											<span class="abstract">
+												Probabilistic independence is a useful concept for describing the result of random sampling---a basic operation in all probabilistic languages---and for reasoning about groups of random variables. Nevertheless, existing verification methods handle independence poorly, if at all. We propose a probabilistic separation logic PSL, where separation models probabilistic independence, based on a new, probabilistic model of the logic of bunched implications (BI). The program logic PSL is capable of verifying information-theoretic security of cryptographic constructions for several well-known tasks, including private information retrieval, oblivious transfer, secure multi-party addition, and simple oblivious RAM, while reasoning purely in terms of independence and uniformity. If time permits, we will also discuss ongoing work for reasoning about conditional independence.
+											</span>
+										</li>
 
-     <p><i>During the seminar.</i> If you'd like to ask a question, either during the seminar or in the question period at the end, click the "Participants" menu and select "Raise hand". The Chairperson may choose to interrupt the speaker and give your audio/video feed the focus, giving you the opportunity to ask your question verbally, or may instead decide to let the seminar continue. You may click "Lower hand" at any time to show you no longer wish to ask a question. To preserve the experience of a real face-to-face conference, there is no possibility of giving a written question, and the chat room is disabled. You also have the opportunity to give nonverbal feedback to the speaker by clicking the "speed up" or "slow down" buttons, also in the "Participants" menu.</p>
+										<li>15 July 2020 (OWLS). <a href="https://www.irif.fr/~tasson/">Christine Tasson</a>, IRIF, Paris, "Towards a model of mixed linear and non-linear substitution." <i>Chair: Alexandra Silva</i>
+											<a href="slides/tasson.pdf">(slides)</a> <a href="https://youtu.be/D-4Rfj0Ya10">(video)</a>
+											<span class="abstract">
+												A functional program is said to be linear when it uses exactly once its
+												input. Linearity is useful to handle memory safely, single-use channels
+												in concurrency, or quantum resources. Yet, we do not want all inputs to
+												be linear and some of them can be used several times safely. Hence the
+												need to understand what is a model of linear-non-linear substitution.
+												Such settings appear naturally in differential lambda-calculus which is
+												our initial motivation.
 
-     <p><i>Recordings.</i> Most OWLS seminars will be recorded and uploaded to YouTube after the event. Only the audio/video of the chairperson, speaker, and questioners will be captured. If you prefer not to be recorded, do not ask a question. Of course, the organizers do not make any recordings of the coffee break sessions.</p>
+												We move from the usual categorical axiomatization of linear logic and
+												lambda-calculus to the multicategorical axiomatisation, using
+												profunctors and 2 monads to give account to linear and non-linear
+												contexts. We present how to combine the linear and the non-linear 2
+												monads in order to model the linear-non-linear substitution.
 
-     <p><i>Inappropriate behaviour.</i> The organizers make use of a range of security features to ensure that the seminar cannot be disrupted by participants who are not interested in constructive scientific interaction. During a seminar, if you observe ongoing inappropriate behaviour, please send a private message to the chairperson to point it out.</p>
+												This is joint work with Martin Hyland.
+											</span>
+										</li>
 
-	 <h2 id="technology">Technology platform</h2>
-
-	 <p>Seminars are hosted through the video conferencing system <a href="https://zoom.us/"><i>Zoom</i></a>. Native clients are available to download for a wide range of platforms, including mobile devices:
-	 	<ul>
-	  <li><a href="http://zoom.us/download?os=linux">Linux</a></li>
-	  <li><a href="http://zoom.us/client/latest/zoomusInstaller.pkg">Mac</a></li>
-	  <li><a href="http://zoom.us/client/latest/ZoomInstaller.exe">Windows</a></li>
-	  <li><a href="http://zoom.us/client/latest/zoom.apk">Android</a></li>
-	  <li><a href="https://itunes.apple.com/us/app/id546505307">iOS</a></li>
-	</ul>
-	  <p>For those who prefer not to use a client, a browser interface is also available.</p>
-
-
-	        <h2 id="sc">Organizing committees</h2>
-
-	        <p>If you have any feedback about OWLS, feel free to get in touch with an organizer.</p>
-
-	        <h3>OWLS</h3>
-
-            <ul>
-              <li><a href="https://alexandrasilva.org/#/main.html">Alexandra Silva</a>, University College London, UK</li>
-              <li><a href="https://www.ioc.ee/~pawel/">Pawel Sobocinski</a>, Tallinn University of Technology, Estonia</li>
-              <li><a href="https://www.cl.cam.ac.uk/~jv258/">Jamie Vicary</a>, University of Cambridge, UK</li>
-            </ul>
-
-	        <h3>OWLS-YR</h3>
-
-            <ul>
-              <li><a href="https://nathanael-fijalkow.github.io/">Nathanaël Fijalkow</a>, CNRS, Laboratoire Bordelais de Recherche en Informatique, France<e/li>
-              <li><a href="http://www.grellois.fr/">Charles Grellois</a>, Université Aix-Marseille, France</li>
-<li><a href="https://www.cse.iitb.ac.in/~krishnas">S. Krishna</a>, IIT Bombay, India</li>
-              <li><a href="http://www.kurims.kyoto-u.ac.jp/~kmuroya/">Koko Muroya</a>, RIMS, Kyoto University, Japan</li>
-            </ul>
-
-          </div>
-          <div id="d"></div>
-        </div>
+										<li>1 July 2020 (OWLS-YR). <a href="https://perso.ens-lyon.fr/amina.doumane/">Amina Doumane</a>, CNRS, ENS de Lyon, "(Non)axiomatizability of positive relation algebras via graph homomorphisms". <i>Chair: Charles Grellois</i> <a href="slides/doumane.pdf">(slides)</a> <a href="https://youtu.be/Ji5ikGQPuUI">(video)</a>
+											<span class="abstract">We study the equational theories of composition and intersection on binary relations, with or without their associated neutral elements (identity and full relation). Without these constants, the equational theory coincides with that of semilattice-ordered semigroups. We show that the equational theory is no longer finitely based when adding one or the other constant—contradicting a conjecture from the litterature. Our proofs exploit a characterisation in terms of graphs and graph homomorphisms, which we show how to adapt in order to capture standard equational theories over the considered signatures.</span></li>
 
 
-        <!-- Some javascript to enable toggling abstracts -->
-        <script
->        </script>
-      </body>
+											<li>24 June 2020 (OWLS). <a href="https://sites.google.com/site/valeriavignudelli/">Valeria Vignudelli</a>, ENS Lyon, "Monads and Quantitative Equational Theories for Nondeterminism and Probability". <i>Chair: Pawel Sobocinski</i> <a href="https://youtu.be/UygWCaGha1A">(video)</a> <span class="abstract">The monad of convex sets of probability distributions is a well-known tool for modelling the combination of nondeterministic and probabilistic computational effects. In this talk I will discuss theories allowing us to reason equationally about this monad, and applications to program verification. 
+												In order to reason about distances between programs combining nondeterminism and probabilities, the monad of convex sets of distributions can be lifted from the category of sets to the category of metric spaces. Using the framework of quantitative algebras, recently introduced by Mardare, Panangaden, and Plotkin, we derive an equational presentation of this monad on metric spaces.
+											The main results I will present in this talk are based on collaborations with Filippo Bonchi, Matteo Mio, and Ana Sokolova.</span></li>	
+
+											<li>17 June 2020 (OWLS-YR). <a href="http://www.lsv.fr/~fortin/">Marie Fortin</a>, University of Liverpool, "FO =  FO3 for Linear Orders with Monotone Binary Relations" <i>Chair: Nathanaël Fijalkow</i>
+												<a href="slides/fortin.pdf">(slides)</a> <span class="abstract">
+													It is well-known that linear orders have the 3-variable property, meaning that over linear orders, every monadic first-order formula with up to 3 free variables is equivalent to one that uses at most 3 variables in total. Over the years, this has been extended to richer classes of structures, such as real-time signals with the +1 relation, Mazurkiewicz traces, or message sequence charts. In this talk, I will present a unifying proof that generalizes those facts. It is based on star-free PDL, a variant of propositional dynamic logic that captures precisely the 3-variable fragment of first-order logic. More precisely, I will show that over structures consisting of one linear order and arbitrarily many binary relations satisfying some monotonicity conditions, star-free PDL has the same expressive power as full first-order logic. This implies that any class of such structures has the 3-variable property.
+												</span></li>
+
+												<li>10 June 2020 (OWLS). Seminar cancelled in support of <a href="https://www.shutdownstem.com/">Black Lives Matter</a>.</li>
+
+												<li>3 June 2020 (OWLS-YR). <a href="https://warwick.ac.uk/fac/sci/dcs/people/dmitry_chistikov/">Dmitry Chistikov</a>, University of Warwick, "Parikh's theorem from the complexity viewpoint".  <i>Chair: Krishna S.</i> <a href="https://youtu.be/G6SkFTML66I">(video)</a>
+													<a href="slides/chistikov.pdf">(slides)</a> <span class="abstract">
+														Parikh's theorem (1961) connects two basic concepts in computer science,
+														recursion and iteration. It states that commutative images of context-free
+														and regular languages form the same family --- namely semilinear sets, or
+														sets definable in Presburger arithmetic (the first-order logic of addition
+														and order). This theorem has become a standard tool in the theory of
+														verification, with many different proofs and extensions.
+														<br>
+														In this talk, we will recall Parikh's theorem and look at it from the
+														complexity viewpoint. Transformation from pushdown automata into finite
+														automata incurs a description blowup, but how big does it need to be?
+														We will look at context-free languages in general and at their subclass,
+														one-counter languages, focusing in particular on lower bounds (hardness).
+													</span></li>
+
+
+													<li>27 May 2020 (OWLS). <a href="http://www.cs.cornell.edu/~kozen/">Dexter Kozen</a>, Cornell University, "Brzozowski derivatives as distributive laws". <i>Chair: Alexandra Silva</i> <a href="slides/kozen.pdf">(slides)</a> <a href="https://youtu.be/tlNR7YRN3v4">(video)</a></li>
+
+													<li>13 May 2020 (OWLS). <a href="https://www.mimuw.edu.pl/~klin/">Bartek Klin</a>, Warsaw University, "Monadic monadic second order logic". <i>Chair: Jamie Vicary</i> <a href="slides/klin.pdf">(slides)</a> <a href="https://youtu.be/gcQB2GtxsmE">(video)</a> <span class="abstract">Monadic second order logic (MSO) is usually studied over specific kinds of structures, be it finite words, infinite words, finite or infinite trees, total orders of various shapes, etc. A monad is a notion of "a kind of structures" that covers these and many other examples. One can formulate an abstract definition of MSO for a generic monad. I will explain how this is done, and I will describe some conditions that a monad should satisfy to ensure a basic "sanity check": that every definable language is recognized by a finite algebra. (joint work with Mikołaj Bojańczyk and Julian Salamanca)</span></li>
+
+													<li>29 April 2020 (OWLS). <a href="https://www.irif.fr/~petrisan/">Daniela Petrisan</a>, University of Paris, "Combining probabilistic and non-deterministic choice via weak distributive laws" <a href="https://www.youtube.com/watch?v=nZLXeVNljy0&t=5s">(video)</a>. <i>Chair: Pawel Sobocinski</i></li>
+
+													<li>15 April 2020 (OWLS). <a href="https://www-i2.informatik.rwth-aachen.de/~katoen/">Joost-Pieter Katoen</a>, RWTH Aachen University, "Termination of probabilistic programs". <i>Chair: Alexandra Silva</i> <a href="slides/katoen.pdf">(slides)</a> <a href="https://www.youtube.com/watch?v=25uuBNISTY8">(video)</a> <span class="abstract"><p>Program termination is a key question in program verification. This talk considers the termination of probabilistic programs, programs that can describe randomised algorithms and more recently received attention in machine learning. Probabilistic termination has several nuances and has some unexpected effects. Programs may diverge with zero probability; they almost-surely terminate (AST). Two AST-programs run in sequence may have an infinite expected run-time, though each of its constituents has a finite expected run-time.</p>
+														<p>
+														This talk will demystify the notions of probabilistic termination, its surprising effects, and its hardness ("degree of undecidability"). We will show a simple proof rule for deciding AST.</p>
+													</span></li>
+													<li>1 April 2020 (OWLS). <a href="https://www.imperial.ac.uk/people/k.buzzard">Kevin Buzzard</a>, Imperial College London, "Is HoTT the way to do mathematics?". <i>Chair: Jamie Vicary</i> <a href="slides/buzzard.pdf" target="_blank">(slides)</a> <a href="https://www.youtube.com/watch?v=q5-pykbfViA">(video)</a> <span class="abstract"><p>Homotopy type theory (HoTT) is a foundation for mathematics. Its origins are in work of Awodey, Warren and independently Voevodsky, an algebraic geometer who then changed area and proposed a new definition of equality between mathematical objects. Voevodsky was initially motivated by a desire to formally verify his own work on a computer. However after his unfortunate death in 2017 it was still not the case that any serious algebraic geometry recognisable to a classical algebraic geometer had been formalised in a HoTT computer system. Even in 2020 Grothendieck's original definition of a scheme (the fundamental building block of modern algebraic geometry) has only been formalised in Lean's Dependent Type Theory (DTT), and not in any HoTT system.</p>
+
+														<p>In my talk, I will start by explaining Voevodsky's univalence axiom, the problems it solves and the problems it causes. I will then explain a basic mathematical question for which Voevodsky's axiom seems in theory like it might be helpful. I will finally talk about work of Ramon Fernandez Mir on formalising Grothendieck's original definition of a scheme in Lean's DTT system (without Voevodsky's axiom). Whether or not this can be done in a HoTT system is apparently an open problem, but one which is easily attackable, and I will finish by explaining my plan for attacking it.</p></span></li>
+													</ul>
+
+
+													<h2 id="partinfo">Information for participants</h2>
+
+													<p><i>Joining the seminar.</i> To join any OWLS seminar, visit the following link, up to 15 minutes before the posted start time:</p>
+													<ul><li><a href="https://us02web.zoom.us/j/177472153?pwd=MFgwd0EzY05QSGtpSDc2dU16aG9wdz09">https://us02web.zoom.us/j/177472153?pwd=MFgwd0EzY05QSGtpSDc2dU16aG9wdz09</a></li></ul>
+													<p>You will be given the option to join through your web browser, or to launch the <i>Zoom</i> client if it is installed on your device <a href="#technology">(see below)</a>. For the best experience, we recommend using the client. When prompted for your name, please enter your real name, so that social interactions during the seminar and coffee breaks can be more natural.</p>
+
+													<p><i>Audio and video.</i> We encourage all participants to enable their audio and video at all times (click "Use Device Audio" in the <i>Zoom</i> interface.) Don't worry about making noise and disrupting the proceedings accidentally; the Chairperson will ensure your audio is muted by default during the seminar. Having your audio and video enabled will allow other participants to see your face in the "Gallery" view, letting them know that you're taking part. It also gives you the option of asking a question, and of making best use of the "coffee break" sessions. For most users with good network access (such as a fast home broadband connection), there is no need to worry that having your audio and video enabled will degrade the experience; the technology platform ensures that the speaker's audio/video stream is prioritised at all times. However, those on slow connections may find it better to disable their audio and video.</p>
+
+													<p id="coffeebreaks"><i>Coffee breaks.</i> Every OWLS seminar has two "coffee breaks", one starting 15 minutes before the posted start time of the seminar, and the second starting after the seminar is finished. To participate in these, feel free to join the meeting early, or to keep the meeting window open after the end of the talk. During these coffee break periods, participants will be automatically gathered into small groups, assigned at random; please introduce yourself to the other members of your group, and chat just like you would at a real conference. Remember to bring your own coffee! If you're not interested in chatting, please close the meeting window during the coffee break periods, so that people who want to chat are not grouped with those who do not.</p>
+
+													<p><i>During the seminar.</i> If you'd like to ask a question, either during the seminar or in the question period at the end, click the "Participants" menu and select "Raise hand". The Chairperson may choose to interrupt the speaker and give your audio/video feed the focus, giving you the opportunity to ask your question verbally, or may instead decide to let the seminar continue. You may click "Lower hand" at any time to show you no longer wish to ask a question. To preserve the experience of a real face-to-face conference, there is no possibility of giving a written question, and the chat room is disabled. You also have the opportunity to give nonverbal feedback to the speaker by clicking the "speed up" or "slow down" buttons, also in the "Participants" menu.</p>
+
+													<p><i>Recordings.</i> Most OWLS seminars will be recorded and uploaded to YouTube after the event. Only the audio/video of the chairperson, speaker, and questioners will be captured. If you prefer not to be recorded, do not ask a question. Of course, the organizers do not make any recordings of the coffee break sessions.</p>
+
+													<p><i>Inappropriate behaviour.</i> The organizers make use of a range of security features to ensure that the seminar cannot be disrupted by participants who are not interested in constructive scientific interaction. During a seminar, if you observe ongoing inappropriate behaviour, please send a private message to the chairperson to point it out.</p>
+
+													<h2 id="technology">Technology platform</h2>
+
+													<p>Seminars are hosted through the video conferencing system <a href="https://zoom.us/"><i>Zoom</i></a>. Native clients are available to download for a wide range of platforms, including mobile devices:
+														<ul>
+															<li><a href="http://zoom.us/download?os=linux">Linux</a></li>
+															<li><a href="http://zoom.us/client/latest/zoomusInstaller.pkg">Mac</a></li>
+															<li><a href="http://zoom.us/client/latest/ZoomInstaller.exe">Windows</a></li>
+															<li><a href="http://zoom.us/client/latest/zoom.apk">Android</a></li>
+															<li><a href="https://itunes.apple.com/us/app/id546505307">iOS</a></li>
+														</ul>
+														<p>For those who prefer not to use a client, a browser interface is also available.</p>
+
+
+														<h2 id="sc">Organizing committees</h2>
+
+														<p>If you have any feedback about OWLS, feel free to get in touch with an organizer.</p>
+
+														<h3>OWLS</h3>
+
+														<ul>
+															<li><a href="https://alexandrasilva.org/#/main.html">Alexandra Silva</a>, University College London, UK</li>
+															<li><a href="https://www.ioc.ee/~pawel/">Pawel Sobocinski</a>, Tallinn University of Technology, Estonia</li>
+															<li><a href="https://www.cl.cam.ac.uk/~jv258/">Jamie Vicary</a>, University of Cambridge, UK</li>
+														</ul>
+
+														<h3>OWLS-YR</h3>
+
+														<ul>
+															<li><a href="https://nathanael-fijalkow.github.io/">Nathanaël Fijalkow</a>, CNRS, Laboratoire Bordelais de Recherche en Informatique, France<e/li>
+																<li><a href="http://www.grellois.fr/">Charles Grellois</a>, Université Aix-Marseille, France</li>
+																<li><a href="https://www.cse.iitb.ac.in/~krishnas">S. Krishna</a>, IIT Bombay, India</li>
+																<li><a href="http://www.kurims.kyoto-u.ac.jp/~kmuroya/">Koko Muroya</a>, RIMS, Kyoto University, Japan</li>
+															</ul>
+
+														</div>
+														<div id="d"></div>
+													</div>
+
+
+													<!-- Some javascript to enable toggling abstracts -->
+													<script
+													>        </script>
+												</body>
