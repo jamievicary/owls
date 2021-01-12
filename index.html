@@ -305,10 +305,12 @@
 
 <ul>
 
-	<li>20 January 2021 (YR-OWLS). <a href="https://www.cs.tau.ac.il/~orilahav/">Ori Lahav</a>, School of Computer Science at Tel Aviv University, "TBA". <i>Chair: Nathanaël Fijalkow</i>
+	<li>20 January 2021 (YR-OWLS). <a href="https://www.cs.tau.ac.il/~orilahav/">Ori Lahav</a>, School of Computer Science at Tel Aviv University, "What's Decidable about Causally Consistent Shared Memory?". <i>Chair: Nathanaël Fijalkow</i>
 		<span class="abstract">
-			<p>
-				TBA
+			<p>				
+While causal consistency is one of the most fundamental consistency models weaker than sequential consistency, the decidability of safety verification for (finite-state) concurrent programs running under causally consistent shared-memories is still unclear. We establish the decidability of this problem for two standard and well-studied variants of causal consistency. To do so, for each of the variants, we develop an equivalent "lossy" operational semantics, and show that it constitutes a well-structured transition system, which enables decidable verification. The two novel semantics are based on similar key observations, which, we believe, may also be of independent use in the investigation of weakly consistent shared memory models and their verification. Interestingly, our results are in contrast to the undecidability of this problem under the Release/Acquire fragment of the C/C++11 memory model, which forms another variant of a causally consistent memory that, in terms of allowed outcomes, lies strictly between the two models we study. Nevertheless, all these variants coincide for write/write-race-free programs, which implies the decidability of verification for such programs under Release/Acquire.
+            <br>
+(Joint work with Udi Boker, partly presented at PLDI'20)
 			</p>
 		</span>
 	</li>
