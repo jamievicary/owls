@@ -339,10 +339,11 @@
 <li>09 June 2021 (YR-OWLS).<a href=" ">Adwait Godbole</a>, University of California at Berkeley, "Parameterized Verification for Release-Acquire". <i>Chair : Nathanaël Fijalkow</i>
 <span class="abstract">
 <p>
-Memory consistency models provide semantics to memory accesses of multiprocessor programs, Sequential Consistency (SC) being a well known example. Weak Memory Models (WMMs) are relaxations of SC which provide weaker guarantees but allow for improved performance. Verification of safety properties has been shown to be a very hard problem from a complexity standpoint for many WMMs. Hence abstractions of such systems and, frameworks providing approximate results are of interest.
+Memory consistency models provide semantics to memory accesses of multiprocessor programs, sequential Consistency (SC) being a well known example. Weak Memory Models (WMMs) are relaxations of SC which provide weaker guarantees but allow for improved performance. Verification of safety properties has been shown to be a very hard problem from a complexity standpoint for many WMMs. Hence abstractions of such systems and, frameworks providing approximate results are of interest.
 This talk is based on the safety verification problem for Release-Acquire (RA) semantics, a popular fragment of C++11 that balances performance and programmability. The focus will be on the role of parameterization, which allows a program to be executed by arbitrarily many (apriori unknown number of) threads. This  can be seen as a (conservative) over-approximation of actual system behaviour. I will talk about some general concepts, including a simplified semantics which we found to be useful in analysing parameterized RA systems. I will then discuss how one can refine the parameterized system with non-parameterized programs. The expressivity of allowed programs affects the hardness of the verification problem and I will talk about concrete algorithmic and complexity results for different program classes. To conclude I will give some extensions of these ideas to variant WMMs as well as avenues for future work.
-
-Parameterized verification for RA is joint work with Krishna S. (IIT Bombay) and Roland Meyer (TU Braunshweig). An arxiv version can be found at https://arxiv.org/abs/2101.12123.
+</p>
+<p>
+This  is based on joint work with S.Krishna (IIT Bombay) and Roland Meyer (TU Braunshweig). An arxiv version can be found at https://arxiv.org/abs/2101.12123.
 
 </p>
 </span>
